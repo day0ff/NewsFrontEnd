@@ -25,7 +25,11 @@ import {RegistrationComponent} from './registration/registration.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CanActivateRouteGuard} from './service/router-guard.service';
 import {UserService} from './service/user.service';
-import { RolesComponent } from './persons/roles/roles.component';
+import {RolesComponent} from './persons/roles/roles.component';
+import {CommentsCountComponent} from './persons/comments-count/comments-count.component';
+import {CommentsService} from './service/comments.service';
+import {NewsService} from './service/news.service';
+import { PersonNewsCountComponent } from './persons/person-news-count/person-news-count.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,9 @@ import { RolesComponent } from './persons/roles/roles.component';
     RegistrationModalComponent,
     RegistrationComponent,
     PageNotFoundComponent,
-    RolesComponent
+    RolesComponent,
+    CommentsCountComponent,
+    PersonNewsCountComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,7 @@ import { RolesComponent } from './persons/roles/roles.component';
       }
     })
   ],
-  providers: [AuthService, UserService, CanActivateRouteGuard, PersonService],
+  providers: [AuthService, UserService, CanActivateRouteGuard, PersonService, CommentsService, NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

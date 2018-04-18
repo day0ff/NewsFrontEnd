@@ -13,8 +13,8 @@
       <span class="screen-name">"{{person.screenName}}"</span>
       <span class="fio">{{person.firstName}}&nbsp;{{person.lastName}}</span>
       <app-roles [user]="person.user"></app-roles>
-      <span class="news">2</span>
-      <span class="comments">8</span>
+      <app-person-news-count [id]="person.id"></app-person-news-count>
+      <app-comments-count [id]="person.id"></app-comments-count>
       <span class="enabled">{{person.user.enabled}}</span>
     </a>
 

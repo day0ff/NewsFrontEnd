@@ -1,0 +1,11 @@
+.comments{
+  padding: 0 1em;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 4em;
+  background-image: url("../../../assets/images/comment.png");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}
