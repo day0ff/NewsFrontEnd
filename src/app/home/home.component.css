@@ -1,0 +1,86 @@
+a{
+  color: #607D8B;
+}
+a:hover{
+  color: #444444;
+}
+.col{
+  text-align: center;
+}
+.col a{
+  text-decoration: none;
+  color: white;
+}
+.col a:hover{
+  color: #BBD8DC;
+  text-underline: none;
+}
+.col h4{
+  height: 18vh;
+  line-height: 18vh;
+  vertical-align: center;
+  border-radius: 5px;
+  background-color: #607D8B;
+  overflow: hidden;
+}
+.note{
+  background-size: 16vh;
+}
+.disc{
+  background-size: 16vh;
+}
+.micro{
+  background-size: 16vh;
+}
+.headphones{
+  background-size: 16vh;
+}
+.wave{
+  background-size: 16vh;
+}
+
+a{
+  text-decoration: none;
+}
+.badge {
+  font-size: larger;
+  font-weight: bolder;
+  color: #607D8B;
+  text-align: right;
+  width: 3em;
+}
+.screen-name, .fio, .roles, .news, .comments{
+  padding: 0 1em;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.screen-name{
+  font-weight: bolder;
+  width: 8em;
+}
+.fio{
+  width: 14em;
+}
+.roles{
+  width: 14em;
+}
+.news{
+  width: 4em;
+  background-image: url("../../assets/images/news_paper.png");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}
+.comments{
+  width: 4em;
+  background-image: url("../../assets/images/comment.png");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}
+
+#roles{
+  border: solid 1px rgb(206, 212, 218);
+  border-radius: 0.25rem;
+  color: #495057;
+}

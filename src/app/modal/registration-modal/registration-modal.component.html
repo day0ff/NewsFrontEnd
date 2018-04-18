@@ -1,0 +1,46 @@
+<!-- Button trigger modal -->
+<span class="registration" data-toggle="modal"
+      data-target="#registrationModal">
+  {{'Modal.Registration.Btn' | translate}}
+</span>
+<!-- Modal -->
+<div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <h2>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title color" id="exampleModalLabel">{{'Modal.Registration.Title' | translate}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2>
+            {{'Modal.Registration.Btn' | translate}} :
+          </h2>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text celLength">{{'Modal.Registration.Login' | translate}} :</span>
+            </div>
+            <input type="text" class="form-control" id="registration"
+                   placeholder="{{'Modal.Registration.Login' | translate}}">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text celLength">{{'Modal.Registration.Password' | translate}} :</span>
+            </div>
+            <input type="password" class="form-control" id="password"
+                   placeholder="{{'Modal.Registration.Password' | translate}}">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Modal.Close' | translate}}</button>
+          <button type="button" class="btn btn-light btn-outline-dark" (click)='eventExecute()' data-dismiss="modal">
+            {{'Modal.Registration.Btn' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </h2>
+</div>

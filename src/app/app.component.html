@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="navbar-brand">
+            <a class="nav-link" routerLink="/home">
+              <img src="../assets/images/hamster_news.png" width="64" height="64" alt="logo">
+              &nbsp;&nbsp;{{'App.Title' | translate}}
+            </a>
+          </h1>
+        </div>
+        <div class="col">
+          <h1 class="navbar-brand" style="float: right; height: 64px">
+            <app-login-modal class="nav-link" (eventEmitter)="signIn()"></app-login-modal>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport"
+            aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupport">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/home">{{'Nav.Home' | translate}}</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/persons">{{'Nav.Persons' | translate}}</a>
+        </li>
+        <!--li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/registration">{{'Nav.Registration' | translate}}</a>
+        </li-->
+      </ul>
+      <div class="dropdown">
+        <button class="btn  btn-outline-secondary dropdown-toggle" type="button" id="localeMenu" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+          {{locale}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="localeMenu">
+          <button class="dropdown-item celLength" (click)="switchLanguage('en')">en</button>
+          <button class="dropdown-item celLength" (click)="switchLanguage('ru')">ru</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+

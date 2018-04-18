@@ -1,0 +1,71 @@
+<!-- Button trigger modal -->
+<div id="loginButton" class="login" data-toggle="modal" data-target="#loginModal">
+  <div>
+    <span>
+      <img src="../../../assets/images/persons/human.png" width="32" height="32" alt="login">
+      {{'Modal.Login.Btn' | translate}}
+    </span>
+  </div>
+</div>
+<div id="logOutButton" class="login" data-target="#loginModal">
+    <span id="personInfo">{{person.firstName}}&nbsp;{{person.lastName}}&nbsp;&nbsp;</span>
+    <span (click)="logOut()">
+    <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">
+    {{'Modal.Login.LogOut' | translate}}
+  </span>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <h2>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title color" id="exampleModalLabel">{{'Modal.Login.Title' | translate}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeLoginModal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2>
+            {{'Modal.Login.Btn' | translate}} :
+          </h2>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text celLength">{{'Modal.Login.Login' | translate}} :</span>
+            </div>
+            <input type="text" class="form-control" id="login"
+                   placeholder="{{'Modal.Login.Login' | translate}}"
+                   [(ngModel)]="user.userName">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text celLength">{{'Modal.Login.Password' | translate}} :</span>
+            </div>
+            <input type="password" class="form-control" id="password"
+                   placeholder="{{'Modal.Login.Password' | translate}}"
+                   [(ngModel)]="user.password">
+          </div>
+          <h6 id="loginError" class="modal-title color" style="display: none; font-size: 60%; color: #5d2222;">
+            {{'Modal.Login.Error' | translate}}
+          </h6>
+          <h6 class="modal-title color" style="font-size: 60%;">
+            Нет аккаунта?&nbsp;
+            <a routerLink="/registration" style="color:#444444;" data-dismiss="modal">Зарегистрироваться.</a>
+          </h6>
+        </div>
+        <div class="modal-footer">
+          <!--button type="button" class="btn btn-dark" data-dismiss="modal" routerLink="/registration">
+            {{'Modal.Login.Register' | translate}}
+          </button-->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Modal.Close' |
+            translate}}
+          </button>
+          <button type="button" class="btn btn-light btn-outline-dark" (click)='eventExecute()'>
+            {{'Modal.Login.Btn' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </h2>
+</div>

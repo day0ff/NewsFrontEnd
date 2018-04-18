@@ -1,0 +1,47 @@
+<hr/>
+<h1>Home.</h1>
+<ul class="list-group">
+  <li class="list-group-item list-group-item-light">
+    <span class="badge">1&nbsp;:</span>
+    <a routerLink="/person/detail/1">
+      <img src="../../assets/images/persons/hamster.png" class="avatar-32" alt="">
+      <span class="screen-name">"hamster"</span>
+      <span class="fio">Huha Huhavich</span>
+      <!--app-roles></app-roles-->
+      <span class="news">2</span>
+      <span class="comments">8</span>
+      <span class="enabled">enabled</span>
+    </a>
+  </li>
+  <li class="list-group-item list-group-item-light">
+    <span class="badge">12&nbsp;:</span>
+    <a routerLink="/person/detail/1">
+      <img src="../../assets/images/persons/hamster.png" class="avatar-32" alt="">
+      <span class="screen-name">"day0ff"</span>
+      <span class="fio">Denis Vershadov</span>
+      <span class="roles">USER</span>
+      <span class="news">0</span>
+      <span class="comments">94</span>
+      <span class="enabled">enabled</span>
+    </a>
+  </li>
+</ul>
+<h3>
+  <span style="font-weight: bolder">{{'User.Details.User' | translate}}</span>
+  <span>{{'User.Details.Details' | translate}}</span>
+</h3>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text celLength">{{'User.Details.UserName' | translate}} :</span>
+  </div>
+  <input type="text" class="form-control" id="userName"
+         placeholder="{{'User.Details.UserName' | translate}}">
+</div>
+<h3>
+  <span>{{'Comments.Title' | translate}}</span>
+  <!--a href="songs/detail/{{song.songId}}" *ngFor="let song of songs, let lastSong = last">"{{song.songName}}"-->
+  <a href="comment/detail/">"Comment"
+    <!--span *ngIf="!lastSong">,&nbsp;</span>
+    <span *ngIf="lastSong">.</span-->
+  </a>
+</h3>

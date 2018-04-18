@@ -1,0 +1,23 @@
+.delete{
+  float: right;
+}
+.celLength{
+  width: 10vw;
+  overflow: hidden;
+}
+.color{
+  font-size: smaller;
+  font-weight: lighter;
+  color:#888888;
+}
+.curve{
+  border-radius: 0px 5px 5px 0;
+}
+.registration{
+  float: right;
+  color: #607D8B;
+}
+.registration:hover{
+  color: #444444;
+  cursor: pointer;
+}

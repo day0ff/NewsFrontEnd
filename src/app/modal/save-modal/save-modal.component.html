@@ -1,0 +1,30 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-secondary celLength curve" data-toggle="modal"
+        data-target="#saveModal">
+  {{'Modal.Save.Btn' | translate}}
+</button>
+<!-- Modal -->
+<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <h2>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title color" id="exampleModalLabel">{{'Modal.Save.Title' | translate}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <span class="color">{{'Modal.Save.Btn' | translate}}:</span>&nbsp;"{{name}}"&nbsp;<span class="color">?</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Modal.Close' | translate}}</button>
+          <button type="button" class="btn btn-light btn-outline-dark" (click)='eventExecute()' data-dismiss="modal">
+            {{'Modal.Save.Btn' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </h2>
+</div>

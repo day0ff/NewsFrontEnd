@@ -1,0 +1,48 @@
+li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+}
+a{
+  color: #607D8B;
+  text-decoration: none;
+
+}
+a:hover{
+  color: #444444;
+}
+.badge {
+  font-size: larger;
+  font-weight: bolder;
+  color: #607D8B;
+  text-align: right;
+  width: 3em;
+}
+.screen-name, .fio, .roles, .news, .comments{
+  padding: 0 1em;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.screen-name{
+  font-weight: bolder;
+  width: 8em;
+}
+.fio{
+  width: 14em;
+}
+.roles{
+  width: 14em;
+}
+.news{
+  width: 4em;
+  background-image: url("../../assets/images/news_paper.png");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}
+.comments{
+  width: 4em;
+  background-image: url("../../assets/images/comment.png");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}

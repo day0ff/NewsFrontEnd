@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+.centering{
+  margin-left: auto; margin-right: auto;
+}
+.avatar-32{
+  border: solid 3px #607D8B;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+}
+.avatar-64{
+  border: solid 3px #607D8B;
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+}

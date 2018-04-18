@@ -1,0 +1,28 @@
+.delete{
+  float: right;
+}
+.celLength{
+  width: 10vw;
+  overflow: hidden;
+}
+.color{
+  font-size: smaller;
+  font-weight: lighter;
+  color:#888888;
+}
+.curve{
+  border-radius: 0px 5px 5px 0;
+}
+.login{
+  float: right;
+  color: #607D8B;
+  height: 64px;
+  line-height: 64px;
+}
+.login:hover{
+  color: #444444;
+  cursor: pointer;
+}
+.login span{
+  vertical-align: middle;
+}

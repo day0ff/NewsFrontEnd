@@ -1,0 +1,34 @@
+a {
+  color: #607D8B;
+}
+
+a:hover {
+  color: #444444;
+}
+
+.celLength {
+  width: 50px;
+  overflow: hidden;
+  color: #607D8B;
+}
+
+.celLength:hover {
+  color: whitesmoke;
+  cursor: pointer;
+  background-color: #6c757d;
+}
+
+dropdown-toggle {
+  min-width: 3.5rem;
+  max-width: 3.6rem;
+}
+
+.dropdown-menu {
+  min-width: 3.5rem;
+  max-width: 3.6rem;
+  padding: 0;
+}
+
+.dropdown-item {
+  width: 100%;
+}
