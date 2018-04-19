@@ -1,0 +1,25 @@
+<hr/>
+<h3>&nbsp;{{'Nav.Message.World' | translate}}</h3>
+<hr/>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"  *ngFor="let n of news" >
+      <div class="news-container">
+        <div class="news-image">
+          <a>
+            <img src="../../../assets/images/news/{{n.image}}" style="align-content: center;">
+          </a>
+        </div>
+        <div class="news-article">
+          <a>{{n.article}}</a>
+        </div>
+      </div>
+      <div class="news-info">
+        <span class="likes">{{n.likes}}</span>
+        <span class="views">{{n.views}}</span>
+        <app-news-comments-count [id]="n.id"></app-news-comments-count>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -30,6 +30,12 @@ import {CommentsCountComponent} from './persons/comments-count/comments-count.co
 import {CommentsService} from './service/comments.service';
 import {NewsService} from './service/news.service';
 import { PersonNewsCountComponent } from './persons/person-news-count/person-news-count.component';
+import { NewsComponent } from './news/news.component';
+import { WorldComponent } from './news/world/world.component';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { NewsInfoComponent } from './news/news-info/news-info.component';
+import { NewsCommentsComponent } from './news/news-comments/news-comments.component';
+import { NewsCommentsCountComponent } from './news/news-comments-count/news-comments-count.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +52,13 @@ import { PersonNewsCountComponent } from './persons/person-news-count/person-new
     PageNotFoundComponent,
     RolesComponent,
     CommentsCountComponent,
-    PersonNewsCountComponent
+    PersonNewsCountComponent,
+    NewsComponent,
+    WorldComponent,
+    NewsDetailComponent,
+    NewsInfoComponent,
+    NewsCommentsComponent,
+    NewsCommentsCountComponent
   ],
   imports: [
     BrowserModule,

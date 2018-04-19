@@ -4,8 +4,12 @@
   },
   "Nav": {
     "Home": "News",
+    "World": "World",
     "Persons": "Persons",
-    "Registration": "Registration"
+    "Registration": "Registration",
+    "Message": {
+      "World": "News of the world. The hottest and latest world news."
+    }
   },
   "Modal": {
     "Close": "Close",

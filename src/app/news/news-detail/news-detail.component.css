@@ -1,0 +1,22 @@
+.news-container {
+  cursor: pointer;
+  color: #444444;
+}
+
+.news-container:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.news-article {
+  text-align: justify;
+  font-weight: bold;
+}
+
+.news-image {
+  text-align: center;
+}
+
+.news-image img {
+  border-radius: 0.25em;
+}

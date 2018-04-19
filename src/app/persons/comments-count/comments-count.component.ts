@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../entity/user';
 import {CommentsService} from '../../service/comments.service';
 
 @Component({
