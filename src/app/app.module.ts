@@ -34,8 +34,10 @@ import { NewsComponent } from './news/news.component';
 import { WorldComponent } from './news/world/world.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { NewsInfoComponent } from './news/news-info/news-info.component';
-import { NewsCommentsComponent } from './news/news-comments/news-comments.component';
-import { NewsCommentsCountComponent } from './news/news-comments-count/news-comments-count.component';
+import { NewsCommentsComponent } from './news/news-info/news-comments/news-comments.component';
+import { NewsCommentsCountComponent } from './news/news-info/news-comments-count/news-comments-count.component';
+import { NewsLikesComponent } from './news/news-info/news-likes/news-likes.component';
+import { NewsTagsComponent } from './news/news-info/news-tags/news-tags.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { NewsCommentsCountComponent } from './news/news-comments-count/news-comm
     NewsDetailComponent,
     NewsInfoComponent,
     NewsCommentsComponent,
-    NewsCommentsCountComponent
+    NewsCommentsCountComponent,
+    NewsLikesComponent,
+    NewsTagsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {News} from '../../entity/news';
 
 @Component({
   selector: 'app-news-info',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-info.component.css']
 })
 export class NewsInfoComponent implements OnInit {
+  @Input() news: News;
+  @Input() url: string;
 
   constructor() { }
 

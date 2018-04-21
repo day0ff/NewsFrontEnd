@@ -17,6 +17,7 @@ export class AppComponent {
 
   signIn() {
     document.getElementById('closeLoginModal').click();
+    document.location.reload();
   }
 
   logOut() {
@@ -26,7 +27,7 @@ export class AppComponent {
   constructor(private translate: TranslateService, private authService: AuthService) {
     this.locale = this.translate.getBrowserLang();
     translate.setDefaultLang(this.locale);
-    if (!this.authService.isToken()) {
+    if (localStorage.getItem('token') === undefined) {
       this.logOut();
     }
   }

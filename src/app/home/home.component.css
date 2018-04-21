@@ -1,86 +1,96 @@
-a{
-  color: #607D8B;
-}
-a:hover{
+.news-container{
   color: #444444;
-}
-.col{
-  text-align: center;
-}
-.col a{
-  text-decoration: none;
-  color: white;
-}
-.col a:hover{
-  color: #BBD8DC;
-  text-underline: none;
-}
-.col h4{
-  height: 18vh;
-  line-height: 18vh;
-  vertical-align: center;
-  border-radius: 5px;
-  background-color: #607D8B;
-  overflow: hidden;
-}
-.note{
-  background-size: 16vh;
-}
-.disc{
-  background-size: 16vh;
-}
-.micro{
-  background-size: 16vh;
-}
-.headphones{
-  background-size: 16vh;
-}
-.wave{
-  background-size: 16vh;
+  font-size: 120%;
 }
 
-a{
-  text-decoration: none;
+.news-image {
+  float: left;
+  text-align: left;
+  padding-right: 1em;
+  padding-bottom: 1em;
 }
-.badge {
-  font-size: larger;
-  font-weight: bolder;
-  color: #607D8B;
+
+.news-image img {
+  border-radius: 0.25em;
+}
+.news-article {
+  font-weight: bold;
+  padding: 1em 1em 0;
+}
+.news-date{
   text-align: right;
-  width: 3em;
+  font-weight: bold;
+  padding-right: 1em;
 }
-.screen-name, .fio, .roles, .news, .comments{
+.news-info{
+  text-align: right;
+}
+.views{
+  background: url("../../assets/images/view.png") no-repeat;
   padding: 0 1em;
   display: inline-block;
-  text-align: center;
+  text-align: right;
   overflow: hidden;
   vertical-align: middle;
-}
-.screen-name{
-  font-weight: bolder;
-  width: 8em;
-}
-.fio{
-  width: 14em;
-}
-.roles{
-  width: 14em;
-}
-.news{
   width: 4em;
-  background-image: url("../../assets/images/news_paper.png");
   background-size: 24px 24px;
-  background-repeat: no-repeat;
 }
 .comments{
+  background: url("../../assets/images/comment.png") no-repeat;
+  padding: 0 1em;
+  display: inline-block;
+  text-align: right;
+  overflow: hidden;
+  vertical-align: middle;
   width: 4em;
-  background-image: url("../../assets/images/comment.png");
+  background-size: 24px 24px;
+}
+.like-add{
+  padding: 0 1em;
+  display: inline-block;
+  text-align: right;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 4em;
   background-size: 24px 24px;
   background-repeat: no-repeat;
 }
-
-#roles{
-  border: solid 1px rgb(206, 212, 218);
-  border-radius: 0.25rem;
-  color: #495057;
+.like-add{
+  background-image: url("../../assets/images/star.png");
+}
+.like-add:hover{
+  cursor: pointer;
+}
+.news-post{
+  clear: both;
+}
+.news-author{
+  text-align: right;
+  font-weight: bold;
+  padding-right: 1em;
+}
+.news-author span{
+  font-weight: normal;
+}
+.news-comment{
+  margin: 1em 0;
+}
+.card{
+  margin: 1em 0;
+}
+.card-header{
+  height: 38px;
+  padding: 0 0 0 1em;
+}
+.avatar-32{
+  margin-top: 3px;
+}
+.card-button{
+  float: right;
+  border-radius: 0 4px 0 0;
+}
+.news-tags{
+  text-align: right;
+  font-style: italic;
+  padding-right: 1em;
 }

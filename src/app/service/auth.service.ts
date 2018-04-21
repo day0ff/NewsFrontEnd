@@ -73,7 +73,11 @@ export class AuthService {
   }
 
   isExpired() {
-    return (this.getExpireIn() < 0);
+    return (this.getExpireIn() <= 0);
+  }
+
+  isAuthorized() {
+    return (this.getExpireIn() > 0);
   }
 
   isToken() {

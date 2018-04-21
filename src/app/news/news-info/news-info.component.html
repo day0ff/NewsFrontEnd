@@ -1,5 +1,15 @@
+<div class="news-container">
+  <div class="news-image">
+    <a routerLink="{{url}}{{news.id}}">
+      <img src="../../../assets/images/news/{{news.image}}" class="img-thumbnail" alt="Cinque Terre">
+    </a>
+  </div>
+  <div class="news-article">
+    <a routerLink="{{url}}{{news.id}}">{{news.title}}</a>
+  </div>
+</div>
 <div class="news-info">
-  <span class="likes">5</span>
-  <span class="views">50</span>
-  <span class="comments">3</span>
+  <app-news-likes [newsId]="news.id"></app-news-likes>
+  <span class="views">{{news.views}}</span>
+  <app-news-comments-count [newsId]="news.id"></app-news-comments-count>
 </div>

@@ -27,13 +27,6 @@ export class PersonService {
       + this.authService.getAccessToken());
   }
 
-  /*  public getPerson(id: number): Observable<Person> {
-      const params = new HttpParams()
-        .set('id', id.toString());
-      return this.http.post<Person>(this.adminUrl + '/person/id' + this.ACCESS_TOKEN
-        + this.authService.getAccessToken(), params, httpOptions);
-    }*/
-
   public getPerson(id: number): Observable<Person> {
     return this.http.get<Person>(this.adminUrl + '/person/get/' + id + this.ACCESS_TOKEN
       + this.authService.getAccessToken());

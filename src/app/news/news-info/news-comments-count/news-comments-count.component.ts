@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NewsService} from '../../service/news.service';
+import {NewsService} from '../../../service/news.service';
 
 @Component({
   selector: 'app-news-comments-count',
@@ -7,11 +7,11 @@ import {NewsService} from '../../service/news.service';
   styleUrls: ['./news-comments-count.component.css']
 })
 export class NewsCommentsCountComponent implements OnInit {
-  @Input() id: number;
+  @Input() newsId: number;
   count: number;
 
   getCount() {
-    this.newsService.getNewsCommentsCount(this.id).subscribe(count => {
+    this.newsService.getNewsCommentsCount(this.newsId).subscribe(count => {
       this.count = count;
     });
   }

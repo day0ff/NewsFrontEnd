@@ -7,8 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class DeleteModalComponent implements OnInit {
   @Input() name: string;
-  @Output()
-  eventEmitter: EventEmitter<string> = new EventEmitter();
+  @Output() eventEmitter: EventEmitter<string> = new EventEmitter();
 
   eventExecute() {
     this.eventEmitter.emit();

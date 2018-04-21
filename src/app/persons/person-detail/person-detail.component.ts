@@ -64,7 +64,7 @@ export class PersonDetailComponent implements OnInit {
     /* this.personService.savePerson(this.person)
        .subscribe(person => {
          this.person = person;
-         this.location.replaceState('/persons/details/' + person.id);
+         this.location.replaceState('/persons/details/' + person.newsId);
        });*/
   }
 

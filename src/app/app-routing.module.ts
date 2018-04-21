@@ -7,13 +7,15 @@ import {RegistrationComponent} from './registration/registration.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CanActivateRouteGuard} from './service/router-guard.service';
 import {WorldComponent} from './news/world/world.component';
+import {NewsDetailComponent} from './news/news-detail/news-detail.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'world', component: WorldComponent},
-  // {path: 'person/detail/:id', component: PersonDetailComponent},
-  {path: 'person/detail/:id', component: PersonDetailComponent, canActivate: [CanActivateRouteGuard], data: {expectedRoles: ['ADMIN'] }},
+  {path: 'world/detail/:newsId', component: NewsDetailComponent},
+  // {path: 'person/detail/:newsId', component: PersonDetailComponent},
+  {path: 'person/detail/:id', component: PersonDetailComponent, canActivate: [CanActivateRouteGuard], data: {expectedRoles: ['ADMIN']}},
   // {path: 'persons', component: PersonsComponent, canActivate: [CanActivateRouteGuard], data: {expectedRoles: ['ADMIN'] }},
   {path: 'persons', component: PersonsComponent},
   {path: 'registration', component: RegistrationComponent},

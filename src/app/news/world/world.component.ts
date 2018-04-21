@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NewsService} from '../../service/news.service';
 import {News} from '../../entity/news';
 
@@ -16,10 +16,17 @@ export class WorldComponent implements OnInit {
     });
   }
 
-  constructor(private newsService: NewsService) { }
+  getNewsByTagTitle() {
+    this.newsService.getNewsByTagTitle('world').subscribe(news => {
+      this.news = news.sort((n1, n2) => n2.views - n1.views);
+    });
+  }
+
+  constructor(private newsService: NewsService) {
+  }
 
   ngOnInit() {
-    this.getNewsByTag();
+    this.getNewsByTagTitle();
   }
 
 }
