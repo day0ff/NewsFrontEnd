@@ -1,4 +1,21 @@
-<hr xmlns="http://www.w3.org/1999/html"/>
+<hr/>
+<div *ngIf="hasPrivilegeEditor">
+  <div class="container">
+    <div class="raw">
+      <div class="col-8 centering">
+        <h3>
+          <div class="news-author">
+            <a routerLink="/edit/detail/{{news.id}}" class="btn btn-outline-secondary" style="float:left;">
+              {{'News.Details.Edit' | translate}}
+            </a>
+            <span style="color: gray;">{{'News.Details.Author' | translate}}</span>&nbsp;{{news.person.screenName}}
+          </div>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <hr/>
+</div>
 <div class="news-container">
   <div class="container">
     <div class="raw">
@@ -7,7 +24,7 @@
           <h2>{{news.title}}</h2>
         </div>
         <div class="news-image">
-          <img src="../../../assets/images/news/{{news.image}}"  class="img-thumbnail">
+          <img src="../../../assets/images/news/{{news.image}}" class="img-thumbnail">
         </div>
         <div class="news-info">
           <app-news-likes [newsId]="news.id"></app-news-likes>
@@ -20,23 +37,27 @@
         <div class="news-date">{{news.publicationDate}}</div>
         <div class="news-post">{{news.post}}</div>
         <app-news-tags [newsId]="news.id"></app-news-tags>
-        <div class="news-author"><span>автор статьи:</span>&nbsp;{{news.person.screenName}}</div>
+        <div class="news-author"><span>{{'News.Details.Author' | translate}}</span>&nbsp;{{news.person.screenName}}
+        </div>
         <div class="news-date">{{news.publicationDate}}</div>
       </div>
       <hr/>
-      <div class="col-8 centering">
-        <div class="news-comments">
-          <h3>Комментарии</h3>
-        </div>
-        <app-news-comments *ngFor="let comment of comments" [comment]="comment"></app-news-comments>
-        <hr/>
-        <div *ngIf="hasPrivilege" class="card" id="comment">
-          <div class="card-header">
-            <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">&nbsp;
-            <span class="screen-name" >"{{person.screenName}}"</span>
-            <app-save-modal  class="card-button" [name]="comment" (eventEmitter)="saveComment()"></app-save-modal>
+      <div class="news-comments">
+        <div class="col-8 centering">
+          <h3>{{'News.Details.Comments' | translate}}</h3>
+          <p *ngIf="comments.length==0">{{'News.Details.NoComments' | translate}}</p>
+          <app-news-comments *ngFor="let comment of comments" [comment]="comment"></app-news-comments>
+          <hr/>
+          <div class="card" *ngIf="hasPrivilegeUser">
+            <h3>{{'News.Details.WriteComment' | translate}}</h3>
+            <div class="card-header">
+              <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">&nbsp;
+              <span class="screen-name">"{{person.screenName}}"</span>
+              <app-save-modal class="card-button" [name]="comment" (eventEmitter)="saveComment()"></app-save-modal>
+            </div>
+            <input type="text" class="card-body" placeholder="{{'News.Details.Comment' | translate}}"
+                   [(ngModel)]="comment">
           </div>
-          <input type="text" class="card-body" placeholder="комментарий" [(ngModel)]="comment">
         </div>
       </div>
     </div>

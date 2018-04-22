@@ -16,19 +16,14 @@ export class AppComponent {
   }
 
   signIn() {
-    document.getElementById('closeLoginModal').click();
-    document.location.reload();
-  }
-
-  logOut() {
-    this.authService.logout();
+    setTimeout(() => {
+      document.getElementById('closeLoginModal').click();
+      document.location.reload();
+    }, 200);
   }
 
   constructor(private translate: TranslateService, private authService: AuthService) {
     this.locale = this.translate.getBrowserLang();
     translate.setDefaultLang(this.locale);
-    if (localStorage.getItem('token') === undefined) {
-      this.logOut();
-    }
   }
 }

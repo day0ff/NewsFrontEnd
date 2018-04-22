@@ -19,7 +19,7 @@ export class NewsLikesComponent implements OnInit {
   }
 
   makeLike() {
-    const userId = this.authService.getUser().id;
+    const userId = this.authService.getPerson().user.id;
     console.log(this.newsId + ' / ' + userId);
     this.newsService.isNewsLikePerson(this.newsId, userId)
       .subscribe(isLike => {

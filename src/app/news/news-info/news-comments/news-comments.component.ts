@@ -17,7 +17,8 @@ export class NewsCommentsComponent implements OnInit {
   }
 
   deleteComment() {
-    this.commentsService.deleteComment(this.comment.id).subscribe();
+    this.commentsService.deleteComment(this.comment.id)
+      .subscribe(() => document.location.reload());
   }
 
   constructor(private authService: AuthService, private commentsService: CommentsService) {

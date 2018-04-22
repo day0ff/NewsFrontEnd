@@ -30,9 +30,10 @@
       "Title": "Login form :",
       "Login": "login",
       "Password": "password",
-      "Register": "Register",
       "Error": "Wrong login or password.",
-      "LogOut": "Log out"
+      "LogOut": "Log out",
+      "NoAccount": "Нет аккаунта?",
+      "Register": "Register."
     },
     "Registration": {
       "Btn": "Registration",
@@ -43,6 +44,16 @@
   },
   "Home": {
     "Persons": "Favorite Persons:"
+  },
+  "News": {
+    "Details": {
+      "Edit": "Edit",
+      "Author": "author:",
+      "Comments": "Comments",
+      "Comment": "comment",
+      "NoComments": "No comments yet.",
+      "WriteComment": "Write your comment."
+    }
   },
   "Persons": {
     "Title": "Persons",

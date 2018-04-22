@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 import {NewsService} from '../../service/news.service';
 import {News} from '../../entity/news';
 import {Comment} from '../../entity/comment';
@@ -19,12 +18,16 @@ export class NewsDetailComponent implements OnInit {
   news: News;
   tags: string [];
   comments: Comment[];
-  hasPrivilege: boolean;
+  hasPrivilegeEditor: boolean;
+  hasPrivilegeUser: boolean;
   comment = null;
   person: Person;
 
   getPrivilege() {
-    this.hasPrivilege = this.authService.hasRoles(['ADMIN', 'EDITOR', 'USER']);
+    this.hasPrivilegeEditor = this.authService.hasRoles(['ADMIN', 'EDITOR']);
+    console.log('Editor privilege = ' + this.hasPrivilegeEditor);
+    this.hasPrivilegeUser = this.authService.hasRoles(['ADMIN', 'EDITOR', 'USER']);
+    console.log('User privilege = ' + this.hasPrivilegeUser);
   }
 
   getNews() {
@@ -45,8 +48,9 @@ export class NewsDetailComponent implements OnInit {
   }
 
   getPerson(): void {
-    try {
-      const user = this.authService.getUser();
+    this.person = this.authService.getPerson();
+/*    try {
+      const user = this.authService.getPerson().user;
       if (user.id > 0) {
         this.personService.getPersonByNameAndPassword(user.userName, user.password)
           .subscribe(person => this.person = person,
@@ -54,13 +58,13 @@ export class NewsDetailComponent implements OnInit {
       }
     } catch (error) {
       console.log('Get Person error + ' + error);
-    }
+    }*/
   }
 
   saveComment() {
     this.getPerson();
     this.commentsService.saveComment(this.person.id, this.news.id, this.comment)
-      .subscribe(comment => console.log('Add comment.'));
+      .subscribe(() => document.location.reload());
   }
 
   constructor(private route: ActivatedRoute,

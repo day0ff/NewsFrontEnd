@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {HttpClient, HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {HomeComponent} from './home/home.component';
 
@@ -29,15 +29,16 @@ import {RolesComponent} from './persons/roles/roles.component';
 import {CommentsCountComponent} from './persons/comments-count/comments-count.component';
 import {CommentsService} from './service/comments.service';
 import {NewsService} from './service/news.service';
-import { PersonNewsCountComponent } from './persons/person-news-count/person-news-count.component';
-import { NewsComponent } from './news/news.component';
-import { WorldComponent } from './news/world/world.component';
-import { NewsDetailComponent } from './news/news-detail/news-detail.component';
-import { NewsInfoComponent } from './news/news-info/news-info.component';
-import { NewsCommentsComponent } from './news/news-info/news-comments/news-comments.component';
-import { NewsCommentsCountComponent } from './news/news-info/news-comments-count/news-comments-count.component';
-import { NewsLikesComponent } from './news/news-info/news-likes/news-likes.component';
-import { NewsTagsComponent } from './news/news-info/news-tags/news-tags.component';
+import {PersonNewsCountComponent} from './persons/person-news-count/person-news-count.component';
+import {NewsComponent} from './news/news.component';
+import {WorldComponent} from './news/world/world.component';
+import {NewsDetailComponent} from './news/news-detail/news-detail.component';
+import {NewsInfoComponent} from './news/news-info/news-info.component';
+import {NewsCommentsComponent} from './news/news-info/news-comments/news-comments.component';
+import {NewsCommentsCountComponent} from './news/news-info/news-comments-count/news-comments-count.component';
+import {NewsLikesComponent} from './news/news-info/news-likes/news-likes.component';
+import {NewsTagsComponent} from './news/news-info/news-tags/news-tags.component';
+import {NewsEditComponent} from './news/news-edit/news-edit.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { NewsTagsComponent } from './news/news-info/news-tags/news-tags.componen
     NewsCommentsComponent,
     NewsCommentsCountComponent,
     NewsLikesComponent,
-    NewsTagsComponent
+    NewsTagsComponent,
+    NewsEditComponent
   ],
   imports: [
     BrowserModule,

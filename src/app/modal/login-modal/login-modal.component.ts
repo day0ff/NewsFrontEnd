@@ -14,29 +14,26 @@ export class LoginModalComponent implements OnInit {
   @Output() eventEmitter = new EventEmitter();
   person: Person = {
     id: null,
-    user: null,
+    user: {
+      id: null,
+      userName: 'elvis',
+      password: '1234',
+      enabled: null
+    },
     firstName: null,
     lastName: null,
     screenName: null,
     image: null
   };
-  user: User = {
-    id: null,
-    userName: 'elvis',
-    password: '1234',
-    enabled: null
-  };
   roles: string [] = [];
 
   eventExecute() {
-    console.log(this.user.userName + ' / ' + this.user.password);
-    this.authService.obtainAccessToken(this.user.userName, this.user.password)
+    console.log(this.person.user.userName + ' / ' + this.person.user.password);
+    this.authService.obtainAccessToken(this.person.user.userName, this.person.user.password)
       .subscribe(
         data => {
           this.authService.saveToken(data);
-          this.userInfo();
           this.personInfo();
-          this.showLogout();
           this.eventEmitter.emit();
         },
         error => this.loginError());
@@ -49,26 +46,34 @@ export class LoginModalComponent implements OnInit {
     }, 5000);
   }
 
-  userInfo() {
-    this.userService.getUser(this.user.userName, this.user.password).subscribe(
-      user => {
-        this.user = user;
-        console.log('User: ' + JSON.stringify(this.user));
-        this.authService.saveUser(this.user);
-        this.personInfo();
+  /*  userInfo() {
+      this.userService.getUser(this.user.userName, this.user.password).subscribe(
+        user => {
+          this.user = user;
+          console.log('User: ' + JSON.stringify(this.user));
+          this.authService.saveUser(this.user);
+          this.personInfo();
+        });
+      this.userService.getUserRoles(this.user.userName, this.user.password).subscribe(
+        roles => {
+          this.roles = roles;
+          console.log('Roles: ' + JSON.stringify(this.roles));
+          this.authService.saveRoles(this.roles);
+        });
+    }*/
+
+  personInfo() {
+    this.personService.getPersonByNameAndPassword(this.person.user.userName, this.person.user.password).subscribe(
+      person => {
+        this.person = person;
+        this.authService.savePerson(this.person);
+        this.showLogout();
       });
-    this.userService.getUserRoles(this.user.userName, this.user.password).subscribe(
+    this.userService.getUserRoles(this.person.user.userName, this.person.user.password).subscribe(
       roles => {
         this.roles = roles;
         console.log('Roles: ' + JSON.stringify(this.roles));
-        this.authService.saveUserRoles(this.roles);
-      });
-  }
-
-  personInfo() {
-    this.personService.getPersonByNameAndPassword(this.user.userName, this.user.password).subscribe(
-      person => {
-        this.person = person;
+        this.authService.saveRoles(this.roles);
       });
   }
 
@@ -94,13 +99,22 @@ export class LoginModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.isExpired()) {
-      this.showLogin();
+    if (localStorage.getItem('person') === undefined) {
+      this.logOut();
     } else {
-      this.user = this.authService.getUser();
+      this.person = this.authService.getPerson();
       this.roles = this.authService.getRoles();
-      this.personInfo();
-      this.showLogout();
+      if (this.authService.isExpired()) {
+        this.showLogin();
+      } else {
+        if (this.person.id !== null) {
+          this.showLogout();
+          console.log('showLogout');
+        } else {
+          this.showLogin();
+          console.log('showLogin');
+        }
+      }
     }
   }
 }

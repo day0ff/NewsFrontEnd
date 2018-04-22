@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Token} from '../entity/token';
 import {User} from '../entity/user';
+import {Person} from '../entity/person';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
@@ -13,16 +14,24 @@ export class AuthService {
   private defaultToken: Token = {
     access_token: null,
     token_type: null,
-    refresh_token: null,
-    expires_in: null,
+    // refresh_token: null,
+    expires_in: 0,
     scope: null
   };
-  private defaultUser: User = {
+  private defaultPerson: Person = {
     id: null,
-    userName: null,
-    password: null,
-    enabled: null
+    user: {
+      id: null,
+      userName: null,
+      password: null,
+      enabled: null
+    },
+    firstName: null,
+    lastName: null,
+    screenName: null,
+    image: null,
   };
+
   private defaultRoles: string [] = [];
 
   private authUrl = 'http://localhost:8080/oauth/token';
@@ -55,12 +64,20 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  saveUserRoles(roles: string []) {
-    localStorage.setItem('roles', JSON.stringify(roles));
+  savePerson(person: Person) {
+    localStorage.setItem('person', JSON.stringify(person));
+  }
+
+  getPerson(): Person {
+    return JSON.parse(localStorage.getItem('person'));
   }
 
   getRoles(): string [] {
     return JSON.parse(localStorage.getItem('roles'));
+  }
+
+  saveRoles(roles: string []) {
+    localStorage.setItem('roles', JSON.stringify(roles));
   }
 
   getAccessToken(): string {
@@ -90,8 +107,8 @@ export class AuthService {
 
   logout() {
     this.saveToken(this.defaultToken);
-    this.saveUser(this.defaultUser);
-    this.saveUserRoles(this.defaultRoles);
+    this.savePerson(this.defaultPerson);
+    this.saveRoles(this.defaultRoles);
   }
 
   constructor(private http: HttpClient) {
