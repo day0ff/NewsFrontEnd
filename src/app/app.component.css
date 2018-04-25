@@ -32,3 +32,6 @@ dropdown-toggle {
 .dropdown-item {
   width: 100%;
 }
+.nav-link:hover {
+  cursor: pointer;
+}

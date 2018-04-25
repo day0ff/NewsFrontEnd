@@ -19,10 +19,10 @@
   height: 64px;
   line-height: 64px;
 }
-.login:hover{
-  color: #444444;
-  cursor: pointer;
-}
 .login span{
   vertical-align: middle;
+}
+.personInfo:hover , .editor:hover , .admin:hover , .sig-in:hover , .logOut:hover {
+  color: #444444;
+  cursor: pointer;
 }

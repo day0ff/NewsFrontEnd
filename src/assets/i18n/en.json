@@ -5,6 +5,7 @@
   "Nav": {
     "Home": "News",
     "World": "World",
+    "News": "News",
     "Persons": "Persons",
     "Registration": "Registration",
     "Message": {
@@ -46,13 +47,29 @@
     "Persons": "Favorite Persons:"
   },
   "News": {
+    "Title": "News",
+    "NewNews": "New news",
     "Details": {
+      "News": "News",
+      "Details": "details",
+      "CreateNewNews": "Create a new news.",
       "Edit": "Edit",
-      "Author": "author:",
+      "AuthorOfArticle":"author of article:",
+      "Author": "author",
+      "Title": "title",
+      "Article": "article",
+      "Post": "post",
+      "Image": "image",
+      "Categories": "categories",
+      "Tags": "tags",
+      "Date": "date",
+      "Views": "views",
+      "Published": "published",
       "Comments": "Comments",
       "Comment": "comment",
       "NoComments": "No comments yet.",
-      "WriteComment": "Write your comment."
+      "WriteComment": "Write your comment.",
+      "NotFound": "News not found."
     }
   },
   "Persons": {

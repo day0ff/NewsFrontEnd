@@ -1,3 +1,120 @@
-<p>
-  news-edit works!
-</p>
+<hr/>
+<div *ngIf="news; else notFound">
+  <h3 *ngIf="news.id==null">{{'News.Details.CreateNewNews' | translate}}</h3>
+  <h2>
+    <span>{{'News.Details.News' | translate}}&nbsp;:</span>
+    <img src="../../../assets/images/news/{{news.image}}" class="img-thumbnail" style="width: 64px; height: 64px;">&nbsp;
+    "{{news.title}}"&nbsp;
+    <span>{{'News.Details.Details' | translate}}</span>
+    <app-delete-modal *ngIf="news.id!=null" [name]="news.title"
+                      (eventEmitter)="deleteNews()" class="delete">
+    </app-delete-modal>
+  </h2>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">id :</span>
+    </div>
+    <input type="text" class="form-control" id="id" [(ngModel)]="news.id" placeholder="id" disabled>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Author' | translate}} :</span>
+    </div>
+    <input type="text" class="form-control" id="screenName" [(ngModel)]="news.person.screenName"
+           placeholder="{{'News.Details.Author' | translate}}" disabled>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Title' | translate}} :</span>
+    </div>
+    <input type="text" class="form-control" id="title" [(ngModel)]="news.title"
+           placeholder="{{'News.Details.Title' | translate}}">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Image' | translate}} :</span>
+    </div>
+    <span class="form-control" style="padding: 0px; border: 0px;">
+      <app-select-img [groups]="imgGroups" [img]="news.image" (imgChange)="news.image=$event"></app-select-img>
+    </span>
+  </div>
+  <div class="news-image">
+    <img src="../../../assets/images/news/{{news.image}}" class="img-thumbnail">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Categories' | translate}} :</span>
+    </div>
+    <app-select-type class="form-control" id="categories" [types]="categoryTypes" [groups]="categoryGroups"
+                     (typesChange) = "categoryTypes=$event"></app-select-type>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Article' | translate}} :</span>
+    </div>
+    <textarea class="form-control  textarea-article" id="article" [(ngModel)]="news.article"
+              placeholder="{{'News.Details.Article' | translate}}"></textarea>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Post' | translate}} :</span>
+    </div>
+    <textarea class="form-control textarea-post" id="post" placeholder="{{'News.Details.Post' | translate}}"
+              [(ngModel)]="news.post"></textarea>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Tags' | translate}} :</span>
+    </div>
+    <app-select-type class="form-control" id="tags" [types]="tagsTypes" [groups]="tagsGroups"
+                     (typesChange) = "tagsTypes=$event"></app-select-type>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Date' | translate}} :</span>
+    </div>
+    <input type="text" class="form-control" id="date" [(ngModel)]="news.publicationDate"
+           placeholder="{{'News.Details.Date' | translate}}">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.Views' | translate}} :</span>
+    </div>
+    <input type="text" class="form-control" id="views" [(ngModel)]="news.views"
+           placeholder="{{'News.Details.Views' | translate}}" disabled>
+    <div class="input-group-append">
+      <app-update-modal *ngIf="news.id!=null" [name]="news.title"
+                        (eventEmitter)="updateNews()"></app-update-modal>
+      <app-save-modal *ngIf="news.id==null" [name]="news.title"
+                      (eventEmitter)="saveNews()"></app-save-modal>
+    </div>
+  </div>
+  <hr/>
+  <h3>{{'News.Details.Comments' | translate}}</h3>
+  <p *ngIf="comments.length==0">{{'News.Details.NoComments' | translate}}</p>
+  <app-news-comments *ngFor="let comment of comments" [comment]="comment"></app-news-comments>
+  <hr/>
+  <div>
+    <h3>{{'News.Details.WriteComment' | translate}}</h3>
+    <div class="card">
+      <div class="card-header">
+        <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">&nbsp;
+        <span class="screen-name">"{{person.screenName}}"</span>
+        <app-save-modal class="card-button" [name]="comment" (eventEmitter)="saveComment()"></app-save-modal>
+      </div>
+      <input type="text" class="card-body" placeholder="{{'News.Details.Comment' | translate}}"
+             [(ngModel)]="comment">
+    </div>
+  </div>
+  <hr/>
+</div>
+
+<ng-template #notFound>
+  <h2>{{'News.NotFound' | translate}}</h2>
+</ng-template>
+<button class="btn btn-outline-secondary celLength" type="button" (click)="goBack()">
+  {{'Persons.Details.BtnBack' | translate}}
+</button>
+<br/>
+

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <h1 class="navbar-brand">
-            <a class="nav-link" routerLink="/home">
+            <a class="nav-link" routerLink="/Новости">
               <img src="../assets/images/hamster_news.png" width="64" height="64" alt="logo">
               &nbsp;&nbsp;{{'App.Title' | translate}}
             </a>
@@ -28,17 +28,11 @@
     <div class="collapse navbar-collapse" id="navbarSupport">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/home">{{'Nav.Home' | translate}}</a>
+          <a class="nav-link" routerLink="/Новости">Новости</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/world">{{'Nav.World' | translate}}</a>
+        <li class="nav-item" routerLinkActive="active" *ngFor="let category of categories">
+          <a href="/category/{{category.category}}" class="nav-link" (click)="navigateTo(category.category)">{{category.category}}</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/persons">{{'Nav.Persons' | translate}}</a>
-        </li>
-        <!--li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/registration">{{'Nav.Registration' | translate}}</a>
-        </li-->
       </ul>
       <div class="dropdown">
         <button class="btn  btn-outline-secondary dropdown-toggle" type="button" id="localeMenu" data-toggle="dropdown"

@@ -1,0 +1,7 @@
+<span class="type" (click)="removeType(type.id)" *ngFor="let type of types">
+    {{type.name}}
+  </span>
+<hr/>
+<button (click)="addType(group.id)" *ngFor="let group of groups" type="button"
+        class="btn btn-outline-secondary celLength curve">{{group.name}}
+</button>

@@ -93,3 +93,15 @@
   border-color: inherit;
   border:1px;
 }
+
+.celLength {
+  width: 150px;
+  overflow: hidden;
+  color: #607D8B;
+}
+
+.celLength:hover {
+  color: whitesmoke;
+  cursor: pointer;
+  background-color: #6c757d;
+}

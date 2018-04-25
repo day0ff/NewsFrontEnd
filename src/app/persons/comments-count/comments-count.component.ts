@@ -11,7 +11,7 @@ export class CommentsCountComponent implements OnInit {
   count: number;
 
   getCount() {
-    this.commentsService.getUserComments(this.id).subscribe(count => {
+    this.commentsService.getCommentsPersonCount(this.id).subscribe(count => {
       this.count = count;
     });
   }

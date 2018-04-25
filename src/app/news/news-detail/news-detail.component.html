@@ -5,10 +5,10 @@
       <div class="col-8 centering">
         <h3>
           <div class="news-author">
-            <a routerLink="/edit/detail/{{news.id}}" class="btn btn-outline-secondary" style="float:left;">
+            <a routerLink="/edit/detail/{{news.id}}" class="btn btn-outline-secondary celLength" style="float:left;">
               {{'News.Details.Edit' | translate}}
             </a>
-            <span style="color: gray;">{{'News.Details.Author' | translate}}</span>&nbsp;{{news.person.screenName}}
+            <span style="color: gray;">{{'News.Details.AuthorOfArticle' | translate}}</span>&nbsp;{{news.person.screenName}}
           </div>
         </h3>
       </div>
@@ -37,7 +37,7 @@
         <div class="news-date">{{news.publicationDate}}</div>
         <div class="news-post">{{news.post}}</div>
         <app-news-tags [newsId]="news.id"></app-news-tags>
-        <div class="news-author"><span>{{'News.Details.Author' | translate}}</span>&nbsp;{{news.person.screenName}}
+        <div class="news-author"><span>{{'News.Details.AuthorOfArticle' | translate}}</span>&nbsp;{{news.person.screenName}}
         </div>
         <div class="news-date">{{news.publicationDate}}</div>
       </div>
@@ -48,15 +48,17 @@
           <p *ngIf="comments.length==0">{{'News.Details.NoComments' | translate}}</p>
           <app-news-comments *ngFor="let comment of comments" [comment]="comment"></app-news-comments>
           <hr/>
-          <div class="card" *ngIf="hasPrivilegeUser">
+          <div *ngIf="hasPrivilegeUser">
             <h3>{{'News.Details.WriteComment' | translate}}</h3>
-            <div class="card-header">
-              <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">&nbsp;
-              <span class="screen-name">"{{person.screenName}}"</span>
-              <app-save-modal class="card-button" [name]="comment" (eventEmitter)="saveComment()"></app-save-modal>
+            <div class="card">
+              <div class="card-header">
+                <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">&nbsp;
+                <span class="screen-name">"{{person.screenName}}"</span>
+                <app-save-modal class="card-button" [name]="comment" (eventEmitter)="saveComment()"></app-save-modal>
+              </div>
+              <input type="text" class="card-body" placeholder="{{'News.Details.Comment' | translate}}"
+                     [(ngModel)]="comment">
             </div>
-            <input type="text" class="card-body" placeholder="{{'News.Details.Comment' | translate}}"
-                   [(ngModel)]="comment">
           </div>
         </div>
       </div>

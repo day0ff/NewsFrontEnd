@@ -4,6 +4,11 @@ import {Location} from '@angular/common';
 
 import {Person} from '../../entity/person';
 import {PersonService} from '../../service/person.service';
+import {Group} from '../../entity/group';
+import {RolesService} from '../../service/roles.servicce';
+import {Roles} from '../../entity/roles';
+import {CommentsService} from '../../service/comments.service';
+import {Comment} from '../../entity/comment';
 
 @Component({
   selector: 'app-person-detail',
@@ -13,7 +18,12 @@ import {PersonService} from '../../service/person.service';
 
 export class PersonDetailComponent implements OnInit {
   @Input() person: Person;
-  roles: string [];
+  imgGroups: Group [] = [{id: 1, name: 'hamster.png'}, {id: 2, name: 'hamster_head.png'}, {id: 3, name: 'human.png'}];
+  comments: Comment[] = [];
+
+  roles: Roles[];
+  rolesTypes: Group[] = [];
+  rolesGroups: Group[] = [];
 
   getPerson(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -28,17 +38,33 @@ export class PersonDetailComponent implements OnInit {
     }
   }
 
-  getPersonRoles(): void {
+  getRoles(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== 'new') {
-      this.personService.getPersonRoles(+id)
+      this.rolesService.getRolesPerson(+id)
         .subscribe(
           roles => {
             this.roles = roles;
+            this.roles.forEach(role =>
+              this.rolesTypes.push({id: role.id, name: role.role})
+            );
           });
     } else {
       this.roles = [];
     }
+    this.rolesService.getRoles()
+      .subscribe(roles => {
+        roles.forEach(role =>
+          this.rolesGroups.push({id: role.id, name: role.role})
+        );
+      });
+  }
+
+  getComments(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.commentsService.getCommentsPerson(+id)
+      .subscribe(comments => this.comments = comments,
+        error => console.log('Comments error + ' + error));
   }
 
   savePerson(): void {
@@ -78,12 +104,15 @@ export class PersonDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private personService: PersonService,
+              private rolesService: RolesService,
+              private commentsService: CommentsService,
               private location: Location,
               private router: Router) {
   }
 
   ngOnInit() {
     this.getPerson();
-    this.getPersonRoles();
+    this.getRoles();
+    this.getComments();
   }
 }

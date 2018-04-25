@@ -28,8 +28,9 @@
     <div class="input-group-prepend">
       <span class="input-group-text celLength">{{'Persons.Details.Image' | translate}} :</span>
     </div>
-    <input type="text" class="form-control" id="image" [(ngModel)]="person.image"
-           placeholder="{{'Persons.Details.Image' | translate}}">
+    <span class="form-control" style="padding: 0px; border: 0px;">
+      <app-select-img [groups]="imgGroups" [img]="person.image" (imgChange)="person.image=$event"></app-select-img>
+    </span>
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -77,51 +78,19 @@
     </div>
   </div>
   <hr/>
-  <h3>
-    <span style="font-weight: bolder">{{'Roles.Roles' | translate}}:</span>
-    <span>{{'Roles.Details' | translate}}</span>
-  </h3>
-  <h5 style="color: #495057;">
-    <div class="form-check form-check-inline">
-      <input *ngIf="roles.indexOf('USER')!== -1" class="form-check-input" type="checkbox" id="USER" value="USER" checked>
-      <input *ngIf="roles.indexOf('USER')== -1" class="form-check-input" type="checkbox" id="USER" value="USER">
-      <label class="form-check-label" for="USER">{{'Roles.User' | translate}}</label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'Roles.Roles' | translate}} :</span>
     </div>
-    <div class="form-check form-check-inline">
-      <input *ngIf="roles.indexOf('EDITOR')!== -1" class="form-check-input" type="checkbox" id="EDITOR" value="EDITOR" checked>
-      <input *ngIf="roles.indexOf('EDITOR')== -1" class="form-check-input" type="checkbox" id="EDITOR" value="EDITOR">
-      <label class="form-check-label" for="EDITOR">{{'Roles.Editor' | translate}}</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input *ngIf="roles.indexOf('ADMIN')!== -1" class="form-check-input" type="checkbox" id="ADMIN" value="ADMIN" checked>
-      <input *ngIf="roles.indexOf('ADMIN')== -1" class="form-check-input" type="checkbox" id="ADMIN" value="ADMIN">
-      <label class="form-check-label" for="ADMIN">{{'Roles.Admin' | translate}}</label>
-    </div>
-  </h5>
-
-  <!--div newsId="accordion">
-    <div class="card">
-      <div class="card-header" newsId="headingOne">
-        <h5 class="mb-0">
-          <span>{{'Passports.Details.Passport' | translate}}&nbsp;:</span>
-          <a href="passports/detail/{{person.passport.passportId}}">{{person.passport.passportNumber}}</a>
-          &nbsp;<span *ngIf="person.passport.passportId==null">{{'Passports.Details.Details' | translate}}</span>
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapsePassport" aria-expanded="true"
-                  aria-controls="collapseOne">
-            {{'Persons.Details.Details' | translate}}
-          </button>
-        </h5>
-      </div>
-
-      <div newsId="collapsePassport" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <app-passport-detail></app-passport-detail>
-        </div>
-      </div>
-    </div>
-  </div-->
+    <app-select-type class="form-control" id="roles" [types]="rolesTypes" [groups]="rolesGroups"
+                     (typesChange)="rolesTypes=$event"></app-select-type>
+  </div>
   <hr/>
+  <h3>{{'News.Details.Comments' | translate}}</h3>
+  <p *ngIf="comments.length==0">{{'News.Details.NoComments' | translate}}</p>
+  <app-news-comments *ngFor="let comment of comments" [comment]="comment"></app-news-comments>
 </div>
+<hr/>
 
 <ng-template #notFound>
   <h2>{{'Persons.NotFound' | translate}}</h2>

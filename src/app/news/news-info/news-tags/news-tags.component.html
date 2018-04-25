@@ -1,1 +1,7 @@
-<div class="news-tags">{{tags}}</div>
+<div class="news-tags">
+  <span class="tag" routerLink="/tag/{{tag.tag}}" *ngFor="let tag of tags, let last = last">
+    {{tag.tag}}
+    <span *ngIf="!last">,&nbsp;</span>
+    <span *ngIf="last">.</span>
+  </span>
+</div>

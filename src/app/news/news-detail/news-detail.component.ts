@@ -49,16 +49,6 @@ export class NewsDetailComponent implements OnInit {
 
   getPerson(): void {
     this.person = this.authService.getPerson();
-/*    try {
-      const user = this.authService.getPerson().user;
-      if (user.id > 0) {
-        this.personService.getPersonByNameAndPassword(user.userName, user.password)
-          .subscribe(person => this.person = person,
-            error => console.log('No Person + ' + error));
-      }
-    } catch (error) {
-      console.log('Get Person error + ' + error);
-    }*/
   }
 
   saveComment() {

@@ -2,11 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {AuthService} from './auth.service';
-import {Like} from '../entity/like';
 import {Comment} from '../entity/comment';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
+  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'})
 };
 
 @Injectable()
@@ -16,8 +15,12 @@ export class CommentsService {
   private editorUrl = 'http://localhost:8080/editor';
   private ACCESS_TOKEN = '?access_token=';
 
-  public getUserComments(id: number): Observable<number> {
-    return this.http.get<number>(this.commentsUrl + 'comments/person/count/' + id);
+  public getCommentsPerson(id: number): Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.commentsUrl + 'comments/person/' + id.toString());
+  }
+
+  public getCommentsPersonCount(id: number): Observable<number> {
+    return this.http.get<number>(this.commentsUrl + 'comments/person/count/' + id.toString());
   }
 
   public saveComment(personId: number, newsId: number, comment: string): Observable<Comment> {

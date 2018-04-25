@@ -5,7 +5,7 @@ import {User} from '../entity/user';
 import {AuthService} from './auth.service';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
+  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'})
 };
 
 @Injectable()

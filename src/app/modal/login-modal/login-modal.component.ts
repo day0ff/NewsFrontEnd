@@ -25,6 +25,8 @@ export class LoginModalComponent implements OnInit {
     screenName: null,
     image: null
   };
+  hasPrivilegeEditor: boolean;
+  hasPrivilegeAdmin: boolean;
   roles: string [] = [];
 
   eventExecute() {
@@ -45,22 +47,6 @@ export class LoginModalComponent implements OnInit {
       document.getElementById('loginError').style.display = 'none';
     }, 5000);
   }
-
-  /*  userInfo() {
-      this.userService.getUser(this.user.userName, this.user.password).subscribe(
-        user => {
-          this.user = user;
-          console.log('User: ' + JSON.stringify(this.user));
-          this.authService.saveUser(this.user);
-          this.personInfo();
-        });
-      this.userService.getUserRoles(this.user.userName, this.user.password).subscribe(
-        roles => {
-          this.roles = roles;
-          console.log('Roles: ' + JSON.stringify(this.roles));
-          this.authService.saveRoles(this.roles);
-        });
-    }*/
 
   personInfo() {
     this.personService.getPersonByNameAndPassword(this.person.user.userName, this.person.user.password).subscribe(
@@ -95,6 +81,14 @@ export class LoginModalComponent implements OnInit {
     }, this.authService.getExpireIn());
   }
 
+  hasPrivilege(): void {
+    console.log(this.roles.toString());
+    this.hasPrivilegeEditor = ['EDITOR'].some(userRole => this.roles.indexOf(userRole) >= 0);
+    console.log('Login privilege Editor = ' + this.hasPrivilegeEditor);
+    this.hasPrivilegeAdmin = ['ADMIN'].some(userRole => this.roles.indexOf(userRole) >= 0);
+    console.log('Login privilege Admin = ' + this.hasPrivilegeAdmin);
+  }
+
   constructor(private authService: AuthService, private personService: PersonService, private userService: UserService) {
   }
 
@@ -104,6 +98,7 @@ export class LoginModalComponent implements OnInit {
     } else {
       this.person = this.authService.getPerson();
       this.roles = this.authService.getRoles();
+      this.hasPrivilege();
       if (this.authService.isExpired()) {
         this.showLogin();
       } else {

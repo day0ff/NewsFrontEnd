@@ -1,16 +1,18 @@
 <!-- Button trigger modal -->
 <div id="loginButton" class="login" data-toggle="modal" data-target="#loginModal">
   <div>
-    <span>
+    <span class="sig-in">
       <img src="../../../assets/images/persons/human.png" width="32" height="32" alt="login">
       {{'Modal.Login.Btn' | translate}}
     </span>
   </div>
 </div>
 <div id="logOutButton" class="login" data-target="#loginModal">
-  <span id="personInfo">{{person.firstName}}&nbsp;{{person.lastName}}&nbsp;&nbsp;</span>
-  <span (click)="logOut()">
-    <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">
+  <span id="personInfo" routerLink="/edit">{{person.firstName}}&nbsp;{{person.lastName}}&nbsp;&nbsp;</span>
+  <span class="editor" *ngIf="hasPrivilegeEditor" routerLink="/edit">{{'Nav.News' | translate}}&nbsp;&nbsp;</span>
+  <span class="admin" *ngIf="hasPrivilegeAdmin" routerLink="/persons">{{'Nav.Persons' | translate}}&nbsp;&nbsp;</span>
+  <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">
+  <span class="logOut" (click)="logOut()">
     {{'Modal.Login.LogOut' | translate}}
   </span>
 </div>

@@ -1,0 +1,13 @@
+.box {
+  margin: 0px 0.5em;
+  border: solid 1px inherit;
+  border-radius: 0 4px 4px 0;
+}
+
+.type {
+  margin-right: 0.5em;
+}
+
+button {
+  margin-right: 0.5em;
+}

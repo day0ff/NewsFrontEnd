@@ -94,3 +94,12 @@
   font-style: italic;
   padding-right: 1em;
 }
+
+/**********************************************/
+.celLength{
+  overflow: hidden;
+}
+.curve{
+  border-radius: 4px;
+  /*border-radius: inherit;*/
+}

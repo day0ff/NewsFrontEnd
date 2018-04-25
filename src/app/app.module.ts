@@ -39,6 +39,13 @@ import {NewsCommentsCountComponent} from './news/news-info/news-comments-count/n
 import {NewsLikesComponent} from './news/news-info/news-likes/news-likes.component';
 import {NewsTagsComponent} from './news/news-info/news-tags/news-tags.component';
 import {NewsEditComponent} from './news/news-edit/news-edit.component';
+import {CategoryComponent} from './news/category/category.component';
+import {CategoriesService} from './service/categories.service';
+import {TagComponent} from './news/tag/tag.component';
+import {SelectImgComponent} from './select-img/select-img.component';
+import {SelectTypeComponent} from './select-type/select-type.component';
+import {TagsService} from './service/tags.service';
+import {RolesService} from './service/roles.servicce';
 
 @NgModule({
   declarations: [
@@ -64,7 +71,11 @@ import {NewsEditComponent} from './news/news-edit/news-edit.component';
     NewsCommentsCountComponent,
     NewsLikesComponent,
     NewsTagsComponent,
-    NewsEditComponent
+    NewsEditComponent,
+    CategoryComponent,
+    TagComponent,
+    SelectImgComponent,
+    SelectTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +90,17 @@ import {NewsEditComponent} from './news/news-edit/news-edit.component';
       }
     })
   ],
-  providers: [AuthService, UserService, CanActivateRouteGuard, PersonService, CommentsService, NewsService],
+  providers: [
+    AuthService,
+    UserService,
+    CanActivateRouteGuard,
+    PersonService,
+    CommentsService,
+    NewsService,
+    CategoriesService,
+    TagsService,
+    RolesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

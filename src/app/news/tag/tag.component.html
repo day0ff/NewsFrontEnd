@@ -1,0 +1,10 @@
+<hr/>
+<h3>&nbsp;{{tag}}</h3>
+<hr/>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"  *ngFor="let currentNews of news" >
+      <app-news-info [news]="currentNews" [url]="'/news/detail/'"></app-news-info>
+    </div>
+  </div>
+</div>

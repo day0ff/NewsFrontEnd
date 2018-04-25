@@ -3,9 +3,10 @@ import {Observable} from 'rxjs/Observable';
 import {Person} from '../entity/person';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {AuthService} from './auth.service';
+import {Roles} from '../entity/roles';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
+  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'})
 };
 
 @Injectable()
@@ -32,18 +33,15 @@ export class PersonService {
       + this.authService.getAccessToken());
   }
 
-  public getPersonRoles(id: number): Observable<string []> {
-    return this.http.get<string []>(this.adminUrl + '/person/roles/' + id + this.ACCESS_TOKEN
-      + this.authService.getAccessToken());
-  }
-
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
   savePerson(person: Person): Observable<Person> {
     return this.http.post<Person>(this.userUrl + 'save',
       JSON.stringify(person),
       httpOptions);
   }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
 
   deletePerson(person: Person): Observable<any> {
     return this.http.post<Person>(this.userUrl + 'delete',

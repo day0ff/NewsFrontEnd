@@ -1,3 +1,22 @@
-<p>
-  news works!
-</p>
+<hr/>
+<h2>
+  {{'News.Title' | translate}}
+  <a routerLink="/edit/detail/new" class="btn btn-outline-secondary" style="float: right;">
+    {{'News.NewNews' | translate}}
+  </a>
+</h2>
+<ul class="list-group">
+  <li class="list-group-item list-group-item-light" *ngFor="let aNews of news">
+    <span class="badge">{{aNews.id}}&nbsp;:</span>&nbsp;&nbsp;
+    <a routerLink="/edit/detail/{{aNews.id}}">
+      <img src="../../assets/images/news/{{aNews.image}}" class="img-thumbnail" style="width: 64px; height: 64px;">
+      <span class="title">"{{aNews.title}}"</span>
+      <span class="screen-name">"{{aNews.person.screenName}}"</span>
+      <span class="news-info">
+        <app-news-likes [newsId]="aNews.id"></app-news-likes>
+        <span class="views">{{aNews.views}}</span>
+        <app-news-comments-count [newsId]="aNews.id"></app-news-comments-count>
+      </span>
+    </a>
+  </li>
+</ul>

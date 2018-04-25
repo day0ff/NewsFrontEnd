@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NewsService} from '../../../service/news.service';
+import {Tags} from '../../../entity/tags';
 
 @Component({
   selector: 'app-news-tags',
@@ -8,7 +9,7 @@ import {NewsService} from '../../../service/news.service';
 })
 export class NewsTagsComponent implements OnInit {
   @Input() newsId: number;
-  tags: string [];
+  tags: Tags[];
 
   getNewsTags() {
     this.newsService.getTagsByNewsId(this.newsId)

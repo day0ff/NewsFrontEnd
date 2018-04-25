@@ -3,3 +3,9 @@
   font-style: italic;
   padding-right: 1em;
 }
+.tag{
+  text-decoration: underline;
+}
+.tag:hover {
+  color: black;
+}
