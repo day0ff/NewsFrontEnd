@@ -8,11 +8,11 @@
   </div>
 </div>
 <div id="logOutButton" class="login" data-target="#loginModal">
-  <span id="personInfo" routerLink="/edit">{{person.firstName}}&nbsp;{{person.lastName}}&nbsp;&nbsp;</span>
+  <span id="personInfo" routerLink="/person/info">{{person.firstName}}&nbsp;{{person.lastName}}&nbsp;&nbsp;</span>
   <span class="editor" *ngIf="hasPrivilegeEditor" routerLink="/edit">{{'Nav.News' | translate}}&nbsp;&nbsp;</span>
   <span class="admin" *ngIf="hasPrivilegeAdmin" routerLink="/persons">{{'Nav.Persons' | translate}}&nbsp;&nbsp;</span>
   <img src="../../../assets/images/persons/{{person.image}}" class="avatar-32">
-  <span class="logOut" (click)="logOut()">
+  <span id="logOut" class="logOut" (click)="logOut()">
     {{'Modal.Login.LogOut' | translate}}
   </span>
 </div>

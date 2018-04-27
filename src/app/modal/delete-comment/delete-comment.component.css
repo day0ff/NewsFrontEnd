@@ -11,13 +11,9 @@
   color:#888888;
 }
 .curve{
+  /*border-radius: 0px 5px 5px 0;*/
   border-radius: inherit;
 }
-.registration{
-  float: right;
-  color: #607D8B;
-}
-.registration:hover{
-  color: #444444;
-  cursor: pointer;
+.modal-header, .modal-body{
+  font-size: 120%;
 }

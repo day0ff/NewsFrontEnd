@@ -23,9 +23,6 @@ h2 span, h3 span{
   color: #444444;
   text-decoration: none;
 }
-app-registration-modal{
-  border-radius: 0 4px 4px 0;
-}
-#userError, #welcome{
-  display: none;
+app-delete-modal{
+  border-radius: 4px;
 }

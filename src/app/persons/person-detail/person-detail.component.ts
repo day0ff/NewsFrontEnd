@@ -9,6 +9,11 @@ import {RolesService} from '../../service/roles.servicce';
 import {Roles} from '../../entity/roles';
 import {CommentsService} from '../../service/comments.service';
 import {Comment} from '../../entity/comment';
+import {NewsService} from '../../service/news.service';
+import {News} from '../../entity/news';
+import {Img} from '../../entity/img';
+import {User} from '../../entity/user';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-person-detail',
@@ -17,8 +22,9 @@ import {Comment} from '../../entity/comment';
 })
 
 export class PersonDetailComponent implements OnInit {
-  @Input() person: Person;
-  imgGroups: Group [] = [{id: 1, name: 'hamster.png'}, {id: 2, name: 'hamster_head.png'}, {id: 3, name: 'human.png'}];
+  person: Person;
+  news: News[];
+  imgGroups: Group [] = Img.imgUser;
   comments: Comment[] = [];
 
   roles: Roles[];
@@ -60,6 +66,19 @@ export class PersonDetailComponent implements OnInit {
       });
   }
 
+  saveRoles() {
+    const roles: number[] = [];
+    this.rolesTypes.forEach(
+      role => {
+        roles.push(role.id);
+      }
+    );
+    console.log('User id = ' + this.person.user.id);
+    this.userService.addUserRoles(this.person.user.id, roles)
+      .subscribe(() => console.log('Add Roles'),
+        error => console.log('Failed add Roles'));
+  }
+
   getComments(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.commentsService.getCommentsPerson(+id)
@@ -67,36 +86,37 @@ export class PersonDetailComponent implements OnInit {
         error => console.log('Comments error + ' + error));
   }
 
-  savePerson(): void {
-    this.personService.savePerson(this.person)
-      .subscribe(person => {
-        this.person = person;
-        this.location.replaceState('/persons/details/' + person.id);
-      });
+  getNews() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.newsService.getNewsByPrson(+id).subscribe(news => this.news = news,
+      error => console.log('News not found'));
   }
 
-  deletePerson(): void {
-    this.personService.deletePerson(this.person).subscribe(
-      response => {
-        this.router.navigateByUrl('/persons');
-      });
+  saveUser() {
+    this.userService.updateUser(this.person.user)
+      .subscribe(user => {
+          this.person.user = user;
+          this.saveRoles();
+        },
+        error => console.log('Error to update User'));
   }
 
   updatePerson(): void {
-    this.personService.updatePerson(this.person).subscribe();
+    this.personService.updatePerson(this.person)
+      .subscribe(person => {
+          this.person = person;
+        },
+        error => console.log('Error to update Person'));
   }
 
-  saveUser(): void {
-    /* this.personService.savePerson(this.person)
-       .subscribe(person => {
-         this.person = person;
-         this.location.replaceState('/persons/details/' + person.newsId);
-       });*/
+  deletePerson(): void {
+    this.personService.deletePerson(this.person.user.userName, this.person.user.password, this.person.id)
+      .subscribe(() => {
+        console.log('Delete Person');
+        this.router.navigateByUrl('/persons');
+      }, () => console.log('Can not delete Person'));
   }
 
-  updateUser(): void {
-    // this.personService.updatePerson(this.person).subscribe();
-  }
 
   goBack(): void {
     this.location.back();
@@ -104,8 +124,10 @@ export class PersonDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private personService: PersonService,
+              private userService: UserService,
               private rolesService: RolesService,
               private commentsService: CommentsService,
+              private newsService: NewsService,
               private location: Location,
               private router: Router) {
   }
@@ -114,5 +136,6 @@ export class PersonDetailComponent implements OnInit {
     this.getPerson();
     this.getRoles();
     this.getComments();
+    this.getNews();
   }
 }

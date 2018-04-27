@@ -35,6 +35,10 @@ export class NewsService {
     return this.http.get<number>(this.newsUrl + 'news/likes/count/' + id);
   }
 
+  public getNewsByPrson(id: number): Observable<News[]> {
+    return this.http.get<News[]>(this.newsUrl + 'news/person/' + id);
+  }
+
   public getNewsByTag(id: number): Observable<News[]> {
     return this.http.get<News[]>(this.newsUrl + 'news/tag/' + id);
   }

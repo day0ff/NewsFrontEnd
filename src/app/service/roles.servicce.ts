@@ -30,16 +30,6 @@ export class RolesService {
       + this.authService.getAccessToken());
   }
 
-  public addRolesPerson(newsId: number, tags: number[]): Observable<Categories> {
-    let params = new HttpParams();
-    params = params.append('newsId', newsId.toString());
-    tags.forEach(id => {
-      params = params.append('tagId', id.toString());
-    });
-    return this.http.post<Categories>(this.editorUrl + '/news/tags/add' + this.ACCESS_TOKEN
-      + this.authService.getAccessToken(), params, httpOptions);
-  }
-
   public deleteAllRolesPerson(newsId: number): Observable<Categories> {
     const params = new HttpParams()
       .set('newsId', newsId.toString());

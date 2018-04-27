@@ -6,14 +6,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./update-modal.component.css']
 })
 export class UpdateModalComponent implements OnInit {
-  @Input() kind: string;
   @Input() name: string;
-  @Output()
-  eventEmitter: EventEmitter<string> = new EventEmitter();
+  @Output() eventEmitter: EventEmitter<string> = new EventEmitter();
 
   eventExecute() {
     this.eventEmitter.emit();
   }
+
   constructor() { }
 
   ngOnInit() {

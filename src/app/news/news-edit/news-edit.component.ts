@@ -12,6 +12,7 @@ import {Categories} from '../../entity/categories';
 import {CategoriesService} from '../../service/categories.service';
 import {Tags} from '../../entity/tags';
 import {TagsService} from '../../service/tags.service';
+import {Img} from '../../entity/img';
 
 @Component({
   selector: 'app-news-edit',
@@ -24,12 +25,13 @@ export class NewsEditComponent implements OnInit {
   comments: Comment[] = [];
   comment = null;
   person: Person;
-  imgGroups: Group [] = [{id: 1, name: 'heather_nauert-1.jpg'}, {id: 2, name: 'news_paper.png'}];
+  imgGroups: Group [] = Img.imgNews;
 
   categories: Categories[];
   categoryTypes: Group[] = [];
   categoryGroups: Group[] = [];
 
+  tag = '';
   tags: Tags[];
   tagsTypes: Group[] = [];
   tagsGroups: Group[] = [];
@@ -51,6 +53,8 @@ export class NewsEditComponent implements OnInit {
       const date = new Date().toISOString().slice(0, 10);
       console.log('Date = ' + date);
       this.news = new News(null, this.person, null, null, null, 'news_paper.png', date, 0, false);
+      this.getCategories();
+      this.getTags();
     }
   }
 
@@ -61,13 +65,16 @@ export class NewsEditComponent implements OnInit {
           this.categoryGroups.push({id: category.id, name: category.category})
         );
       });
-    this.categoriesService.getCategoriesNews(this.news.id)
-      .subscribe(categories => {
-        this.categories = categories;
-        this.categories.forEach(category =>
-          this.categoryTypes.push({id: category.id, name: category.category})
-        );
-      });
+    const id = this.route.snapshot.paramMap.get('editId');
+    if (id !== 'new') {
+      this.categoriesService.getCategoriesNews(this.news.id)
+        .subscribe(categories => {
+          this.categories = categories;
+          this.categories.forEach(category =>
+            this.categoryTypes.push({id: category.id, name: category.category})
+          );
+        });
+    }
   }
 
   saveCategories() {
@@ -78,6 +85,7 @@ export class NewsEditComponent implements OnInit {
       }
     );
     if (categories.length > 0) {
+      console.log('News id = ' + this.news.id);
       this.categoriesService.addCategoriesNews(this.news.id, categories)
         .subscribe(() => console.log('Add categories'),
           error => console.log('Failed add categories'));
@@ -88,28 +96,6 @@ export class NewsEditComponent implements OnInit {
     }
   }
 
-  /*  saveCategories() {
-      this.categoriesService.deleteAllCategoriesNews(this.news.id)
-        .subscribe(() => {
-            console.log('Delete All Categories');
-            this.categoryTypes.forEach(
-              category => {
-                this.categoriesService.saveCategoriesNews(this.news.id, category.id)
-                  .subscribe(() => console.log('Category add = id: ' + category.id + ' name:' + category.name));
-              }
-            );
-          },
-          error => {
-            console.log('Can not delete Categories');
-            this.categoryTypes.forEach(
-              category => {
-                this.categoriesService.saveCategoriesNews(this.news.id, category.id)
-                  .subscribe(() => console.log('Category add = id: ' + category.id + ' name:' + category.name));
-              }
-            );
-          });
-    }*/
-
   getTags() {
     this.tagsService.getTags()
       .subscribe(tags => {
@@ -117,13 +103,16 @@ export class NewsEditComponent implements OnInit {
           this.tagsGroups.push({id: tag.id, name: tag.tag})
         );
       });
-    this.tagsService.getTagsNews(this.news.id)
-      .subscribe(tags => {
-        this.tags = tags;
-        this.tags.forEach(tag =>
-          this.tagsTypes.push({id: tag.id, name: tag.tag})
-        );
-      });
+    const id = this.route.snapshot.paramMap.get('editId');
+    if (id !== 'new') {
+      this.tagsService.getTagsNews(this.news.id)
+        .subscribe(tags => {
+          this.tags = tags;
+          this.tags.forEach(tag =>
+            this.tagsTypes.push({id: tag.id, name: tag.tag})
+          );
+        });
+    }
   }
 
   saveTags() {
@@ -134,6 +123,7 @@ export class NewsEditComponent implements OnInit {
       }
     );
     if (tags.length > 0) {
+      console.log('News id = ' + this.news.id);
       this.tagsService.addTagsNews(this.news.id, tags)
         .subscribe(() => console.log('Add tags'),
           error => console.log('Failed add tags'));
@@ -144,27 +134,16 @@ export class NewsEditComponent implements OnInit {
     }
   }
 
-/*  saveTags() {
-    this.tagsService.deleteAllTagsNews(this.news.id)
-      .subscribe(() => {
-          console.log('Delete All Tags');
-          this.tagsTypes.forEach(
-            tag => {
-              this.tagsService.saveTagsNews(this.news.id, tag.id)
-                .subscribe(() => console.log('Tags add = id: ' + tag.id + ' name:' + tag.name));
-            }
-          );
+  addTag() {
+    this.tagsService.saveNewTag(this.tag)
+      .subscribe(tag => {
+          console.log('Save tag = ' + tag);
+          this.tagsGroups = [];
+          this.tagsTypes = [];
+          this.getTags();
         },
-        error => {
-          console.log('Can not delete Tags');
-          this.tagsTypes.forEach(
-            tag => {
-              this.tagsService.saveTagsNews(this.news.id, tag.id)
-                .subscribe(() => console.log('Tags add = id: ' + tag.id + ' name:' + tag.name));
-            }
-          );
-        });
-  }*/
+        error => console.log('Can not save new tag.'));
+  }
 
   getComments(): void {
     const id = this.route.snapshot.paramMap.get('editId');
@@ -186,9 +165,10 @@ export class NewsEditComponent implements OnInit {
   saveNews(): void {
     this.newsService.saveNews(this.news, this.person.id)
       .subscribe(news => {
+        this.news = news;
         this.saveCategories();
         this.saveTags();
-        this.location.replaceState('/edit/detail/' + news.id);
+        this.router.navigateByUrl('edit/detail/' + this.news.id);
       });
   }
 

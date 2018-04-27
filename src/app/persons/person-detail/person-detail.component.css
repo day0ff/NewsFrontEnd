@@ -1,28 +1,38 @@
-h2 span, h3 span{
+h2 span, h3 span {
   font-size: smaller;
   font-weight: lighter;
-  color:#888888;
+  color: #888888;
 }
-.delete{
+
+.delete {
   float: right;
 }
-.celLength{
+
+.celLength {
   width: 10vw;
   overflow: hidden;
 }
-.mb-0, .mb-0 button{
-  color:#888888;
+
+.mb-0, .mb-0 button {
+  color: #888888;
 }
-.mb-0 button{
-  padding-left:0;
+
+.mb-0 button {
+  padding-left: 0;
 }
-.mb-0 a, h3 a{
+
+.mb-0 a, h3 a {
   color: #607D8B;
 }
-.mb-0 a:hover, h3 a:hover{
+
+.mb-0 a:hover, h3 a:hover {
   color: #444444;
   text-decoration: none;
 }
-app-delete-modal{
+
+app-delete-modal {
   border-radius: 4px;
+}
+app-save-modal{
+  border-radius: 0 4px 4px 0;
 }

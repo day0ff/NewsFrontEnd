@@ -1,5 +1,6 @@
-<span class="type" (click)="removeType(type.id)" *ngFor="let type of types">
-    {{type.name}}
+<span class="type" (click)="removeType(type.id)" *ngFor="let type of types, let last = last">
+    {{type.name}}<span *ngIf="!last">,&nbsp;</span>
+    <span *ngIf="last">.</span>
   </span>
 <hr/>
 <button (click)="addType(group.id)" *ngFor="let group of groups" type="button"

@@ -2,8 +2,8 @@
   <div class="card-header">
     <img src="../../../../assets/images/persons/{{comment.person.image}}" class="avatar-32">
     <span class="screen-name">"{{comment.person.screenName}}"</span>
-    <app-delete-modal *ngIf="hasPrivilege"  class="card-button" [name]="comment.comment"
-                      (eventEmitter)="deleteComment()" ></app-delete-modal>
+    <app-delete-comment *ngIf="hasPrivilege"  class="card-button" [name]="comment.comment"
+                      (eventEmitterComment)="deleteComment()" ></app-delete-comment>
   </div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">

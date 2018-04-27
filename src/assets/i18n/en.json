@@ -18,6 +18,11 @@
       "Btn": "Delete",
       "Title": "confirm action"
     },
+    "Add": {
+      "Btn": "Add",
+      "Title": "confirm action",
+      "Message": "Add new tag"
+    },
     "Save": {
       "Btn": "Save",
       "Title": "confirm action"
@@ -37,10 +42,12 @@
       "Register": "Register."
     },
     "Registration": {
-      "Btn": "Registration",
-      "Title": "Registration form :",
-      "Login": "login",
-      "Password": "password"
+      "Btn": "Register",
+      "Title": "Registered user :",
+      "Person": "user",
+      "NotVerify": "Not all required fields are filled in.",
+      "UserExist" : "A user with this login already exists.",
+      "Welcome": "You have successfully registered."
     }
   },
   "Home": {
@@ -62,6 +69,7 @@
       "Image": "image",
       "Categories": "categories",
       "Tags": "tags",
+      "AddTag": "tag",
       "Date": "date",
       "Views": "views",
       "Published": "published",
@@ -85,7 +93,12 @@
       "Image": "image",
       "Details": "details",
       "CreateNewPerson": "Create new Person",
-      "BtnBack": "go back"
+      "BtnBack": "go back",
+      "Roles": "Person roles.",
+      "News": "Person news.",
+      "NoNews": "No person news.",
+      "Comments": "Person comments.",
+      "NoComments": "No person comments."
     }
   },
   "User": {

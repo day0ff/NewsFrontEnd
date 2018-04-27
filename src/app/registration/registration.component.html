@@ -3,28 +3,74 @@
   <div class="raw">
     <div class="col-8 centering">
       <h2>
-        {{'Modal.Registration.Btn' | translate}}
+        <span style="font-weight: bolder">{{'Modal.Registration.Btn' | translate}}&nbsp;:</span>
       </h2>
+      <hr/>
+      <h3 id="userError">
+            <span class="color" style="color: #5d2222;">
+              {{'Modal.Registration.UserExist' | translate}}
+            </span>
+      </h3>
+      <h3 id="welcome">
+            <span class="color" style="color: darkgreen;">
+              {{'Modal.Registration.Welcome' | translate}}
+            </span>
+      </h3>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text celLength">{{'Modal.Registration.Login' | translate}} :</span>
+          <span class="input-group-text celLength">{{'User.Details.UserName' | translate}} :</span>
         </div>
-        <input type="text" class="form-control" id="registration"
-               placeholder="{{'Registration.Login' | translate}}">
+        <input type="text" class="form-control" id="userName" [(ngModel)]="person.user.userName"
+               placeholder="{{'User.Details.UserName' | translate}}" required>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text celLength">{{'Modal.Registration.Password' | translate}} :</span>
+          <span class="input-group-text celLength">{{'User.Details.Password' | translate}} :</span>
         </div>
-        <input type="password" class="form-control" id="password"
-               placeholder="{{'Registration.Password' | translate}}">
+        <input type="password" class="form-control" id="passwordRegistration" [(ngModel)]="person.user.password"
+               placeholder="{{'User.Details.Password' | translate}}" required>
+      </div>
+      <hr>
+      <h3>
+        <span>Информация о пользователе&nbsp;:</span><br/>
+        <span style="font-weight: bolder;">"{{person.screenName}}"&nbsp;</span>
+        <img src="../../../assets/images/persons/{{person.image}}" class="avatar-64">&nbsp;
+        {{person.firstName}}&nbsp;{{person.lastName}}&nbsp;
+        <span>{{'Persons.Details.Details' | translate}}</span>
+      </h3>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text celLength">{{'Persons.Details.ScreenName' | translate}} :</span>
+        </div>
+        <input type="text" class="form-control" id="screenName" [(ngModel)]="person.screenName"
+               placeholder="{{'Persons.Details.ScreenName' | translate}}" required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text celLength">{{'Persons.Details.Image' | translate}} :</span>
+        </div>
+        <span class="form-control" style="padding: 0px; border: 0px;">
+      <app-select-img [groups]="imgGroups" [img]="person.image" (imgChange)="person.image=$event"></app-select-img>
+    </span>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text celLength">{{'Persons.Details.FirstName' | translate}} :</span>
+        </div>
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="person.firstName"
+               placeholder="{{'Persons.Details.FirstName' | translate}}" required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text celLength">{{'Persons.Details.LastName' | translate}} :</span>
+        </div>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="person.lastName"
+               placeholder="{{'Persons.Details.LastName' | translate}}" required>
         <div class="input-group-append">
-          <button type="button" class="btn btn-outline-secondary celLength curve">
-            {{'Registration.Register' | translate}}
-          </button>
+          <app-registration-modal [user]="user" [person]="person"
+                          (eventEmitter)="registerUser()"></app-registration-modal>
         </div>
       </div>
     </div>
-    <div class="col-2"></div>
   </div>
 </div>

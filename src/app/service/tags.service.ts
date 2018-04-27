@@ -22,16 +22,15 @@ export class TagsService {
     return this.http.get<Tags[]>(this.newsUrl + 'tags');
   }
 
-  public getTagsNews(id: number): Observable<Tags[]> {
-    return this.http.get<Tags[]>(this.newsUrl + 'tags/news/' + id.toString());
+  public saveNewTag(newTag: string): Observable<Tags> {
+    const params = new HttpParams()
+      .set('newTag', newTag);
+    return this.http.post<Tags>(this.editorUrl + '/tag/new' + this.ACCESS_TOKEN
+      + this.authService.getAccessToken(), params, httpOptions);
   }
 
-  public saveTagsNews(newsId: number, categoryId: number): Observable<Categories> {
-    const params = new HttpParams()
-      .set('newsId', newsId.toString())
-      .set('tagId', categoryId.toString());
-    return this.http.post<Categories>(this.editorUrl + '/news/tags/save' + this.ACCESS_TOKEN
-      + this.authService.getAccessToken(), params, httpOptions);
+  public getTagsNews(id: number): Observable<Tags[]> {
+    return this.http.get<Tags[]>(this.newsUrl + 'tags/news/' + id.toString());
   }
 
   public addTagsNews(newsId: number, tags: number[]): Observable<Categories> {

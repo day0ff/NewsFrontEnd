@@ -1,13 +1,12 @@
 <hr/>
 <div *ngIf="person; else notFound">
-  <h3 *ngIf="person.id==null">{{'Persons.Details.CreateNewPerson' | translate}}</h3>
   <h2>
     <span>{{'Persons.Details.Person' | translate}}&nbsp;:</span><br/>
     <span style="font-weight: bolder;">"{{person.screenName}}"&nbsp;</span>
     <img src="../../../assets/images/persons/{{person.image}}" class="avatar-64">&nbsp;
     {{person.firstName}}&nbsp;{{person.lastName}}&nbsp;
     <span>{{'Persons.Details.Details' | translate}}</span>
-    <app-delete-modal *ngIf="person.id!=null" [name]="person.firstName +' ' + person.lastName"
+    <app-delete-modal [name]="person.firstName +' ' + person.lastName"
                       (eventEmitter)="deletePerson()" class="delete">
     </app-delete-modal>
   </h2>
@@ -61,10 +60,6 @@
     </div>
     <input type="text" class="form-control" id="userName" [(ngModel)]="person.user.userName"
            placeholder="{{'User.Details.UserName' | translate}}">
-    <div class="input-group-append">
-      <app-save-modal [name]="person.user.userName" (eventEmitter)="saveUser()" class="delete">
-      </app-save-modal>
-    </div>
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -72,34 +67,11 @@
     </div>
     <input type="password" class="form-control" id="password" [(ngModel)]="person.user.password"
            placeholder="{{'User.Details.Password' | translate}}">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text celLength">{{'Roles.Roles' | translate}} :</span>
-    </div>
-    <app-select-type class="form-control" id="roles" [types]="rolesTypes" [groups]="rolesGroups"
-                     (typesChange)="rolesTypes=$event"></app-select-type>
-  </div>
-  <hr/>
-  <h3>
-    <span style="font-weight: bolder">{{'Persons.Details.News' | translate}}</span>&nbsp;
-    <span>{{'Persons.Details.Details' | translate}}</span>
-  </h3>
-  <p *ngIf="comments.length==0">{{'Persons.Details.NoNews' | translate}}</p>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3" *ngFor="let currentNews of news">
-        <app-news-info [news]="currentNews" [url]="'/news/detail/'"></app-news-info>
-      </div>
+    <div class="input-group-append">
+      <app-save-modal [name]="person.user.userName"
+                        (eventEmitter)="updateUser()"></app-save-modal>
     </div>
   </div>
-  <hr/>
-  <h3>
-    <span style="font-weight: bolder">{{'Persons.Details.Comments' | translate}}</span>&nbsp;
-    <span>{{'Persons.Details.Details' | translate}}</span>
-  </h3>
-  <p *ngIf="comments.length==0">{{'Persons.Details.NoComments' | translate}}</p>
-  <app-news-comments *ngFor="let comment of comments" [comment]="comment"></app-news-comments>
 </div>
 <ng-template #notFound>
   <h2>{{'Persons.NotFound' | translate}}</h2>

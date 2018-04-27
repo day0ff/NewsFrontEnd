@@ -70,6 +70,19 @@
     <app-select-type class="form-control" id="tags" [types]="tagsTypes" [groups]="tagsGroups"
                      (typesChange) = "tagsTypes=$event"></app-select-type>
   </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text celLength">{{'News.Details.AddTag' | translate}} :</span>
+    </div>
+    <input type="text" class="form-control" id="addTag" [(ngModel)]="tag"
+           placeholder="{{'News.Details.AddTag' | translate}}">
+    <div class="input-group-append">
+      <app-add-tag [name]="tag"
+                        (eventEmitterAdd)="addTag()"></app-add-tag>
+    </div>
+  </div>
+
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text celLength">{{'News.Details.Date' | translate}} :</span>

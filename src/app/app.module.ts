@@ -46,6 +46,10 @@ import {SelectImgComponent} from './select-img/select-img.component';
 import {SelectTypeComponent} from './select-type/select-type.component';
 import {TagsService} from './service/tags.service';
 import {RolesService} from './service/roles.servicce';
+import {FooterComponent} from './footer/footer.component';
+import {PersonInfoComponent} from './persons/person-info/person-info.component';
+import { DeleteCommentComponent } from './modal/delete-comment/delete-comment.component';
+import { AddTagComponent } from './modal/add-tag/add-tag.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +79,11 @@ import {RolesService} from './service/roles.servicce';
     CategoryComponent,
     TagComponent,
     SelectImgComponent,
-    SelectTypeComponent
+    SelectTypeComponent,
+    FooterComponent,
+    PersonInfoComponent,
+    DeleteCommentComponent,
+    AddTagComponent
   ],
   imports: [
     BrowserModule,
