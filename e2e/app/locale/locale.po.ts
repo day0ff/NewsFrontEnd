@@ -2,7 +2,7 @@ import {browser, by, element, promise, ElementFinder, ElementArrayFinder} from '
 
 export class LocalePo {
   navigateToHome(): promise.Promise<any> {
-    return browser.get('/');
+    return browser.get('/Новости');
   }
 
   getLocaleDropDawnMenuButton(): ElementFinder  {

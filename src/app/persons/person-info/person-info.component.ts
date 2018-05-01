@@ -14,17 +14,34 @@ import {Router} from '@angular/router';
   templateUrl: './person-info.component.html',
   styleUrls: ['./person-info.component.css']
 })
+/**
+ * The class implements component management PersonInfoComponent.
+ * Contains methods that create, update, delete current person information.
+ */
 export class PersonInfoComponent implements OnInit {
+  /**
+   * property - of person
+   */
   person: Person;
+  /**
+   * property - of persons news
+   */
   user: User;
+  /**
+   * property - of user images group array
+   */
   imgGroups: Group [] = Img.imgUser;
-
+  /**
+   * The method requests current person and user.
+   */
   getPerson(): void {
     this.person = this.authService.getPerson();
     this.user = this.authService.getPerson().user;
   }
-
-  updateUser() {
+  /**
+   * The method update current user.
+   */
+  updateUser(): void {
     this.userService.updateUserByNameAndPassword(this.user.userName, this.user.password,
       this.person.user.userName, this.person.user.password)
       .subscribe(user => {
@@ -34,8 +51,10 @@ export class PersonInfoComponent implements OnInit {
         },
         error => console.log('Error to update User'));
   }
-
-  updatePerson() {
+  /**
+   * The method update current person.
+   */
+  updatePerson(): void {
     this.personService.updatePersonByUserNameAndPassword(this.person.user.userName, this.person.user.password, this.person)
       .subscribe(person => {
           this.person = person;
@@ -43,8 +62,10 @@ export class PersonInfoComponent implements OnInit {
         },
         error => console.log('Error to update Person'));
   }
-
-  deletePerson() {
+  /**
+   * The method delete current person.
+   */
+  deletePerson(): void {
     this.personService.deletePerson(this.person.user.userName, this.person.user.password, this.person.id)
       .subscribe(() => {
         console.log('Delete Person');
@@ -52,18 +73,25 @@ export class PersonInfoComponent implements OnInit {
         this.router.navigateByUrl('/Новости');
       }, () => console.log('Can not delete Person'));
   }
-
+  /**
+   * The method return to previous page.
+   */
   goBack(): void {
     this.location.back();
   }
-
+  /**
+   * Creates a new default object PersonInfoComponent
+   * @constructor
+   */
   constructor(private authService: AuthService,
               private userService: UserService,
               private personService: PersonService,
               private router: Router,
               private location: Location) {
   }
-
+  /**
+   * Initializes the PersonInfoComponent class after it is created.
+   */
   ngOnInit() {
     this.getPerson();
   }

@@ -6,18 +6,34 @@ import {CommentsService} from '../../service/comments.service';
   templateUrl: './comments-count.component.html',
   styleUrls: ['./comments-count.component.css']
 })
+/**
+ * The class implements component management CommentsCountComponent.
+ */
 export class CommentsCountComponent implements OnInit {
+  /**
+   * property - input comment id from parent component
+   */
   @Input() id: number;
+  /**
+   * property - of person comments count
+   */
   count: number;
-
-  getCount() {
+  /**
+   * The method request for person comments count.
+   */
+  getCount(): void {
     this.commentsService.getCommentsPersonCount(this.id).subscribe(count => {
       this.count = count;
     });
   }
-
+  /**
+   * Creates a new default object CommentsCountComponent
+   * @constructor
+   */
   constructor(private commentsService: CommentsService) { }
-
+  /**
+   * Initializes the CommentsCountComponent class after it is created.
+   */
   ngOnInit() {
     this.getCount();
   }

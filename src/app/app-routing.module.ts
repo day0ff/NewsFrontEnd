@@ -46,5 +46,9 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+/**
+ * The configuration class AppRoutingModule, that configure routes of navigation.
+ *
+  */
 export class AppRoutingModule {
 }

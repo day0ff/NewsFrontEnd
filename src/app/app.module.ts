@@ -31,7 +31,6 @@ import {CommentsService} from './service/comments.service';
 import {NewsService} from './service/news.service';
 import {PersonNewsCountComponent} from './persons/person-news-count/person-news-count.component';
 import {NewsComponent} from './news/news.component';
-import {WorldComponent} from './news/world/world.component';
 import {NewsDetailComponent} from './news/news-detail/news-detail.component';
 import {NewsInfoComponent} from './news/news-info/news-info.component';
 import {NewsCommentsComponent} from './news/news-info/news-comments/news-comments.component';
@@ -68,7 +67,6 @@ import { AddTagComponent } from './modal/add-tag/add-tag.component';
     CommentsCountComponent,
     PersonNewsCountComponent,
     NewsComponent,
-    WorldComponent,
     NewsDetailComponent,
     NewsInfoComponent,
     NewsCommentsComponent,
@@ -111,9 +109,21 @@ import { AddTagComponent } from './modal/add-tag/add-tag.component';
   ],
   bootstrap: [AppComponent]
 })
+/**
+ * The configuration class AppModule.
+ *
+ *  An NgModule is a class marked by the @NgModule decorator. @NgModule takes a metadata object that describes how to compile
+ *  a component's template and how to create an injector at runtime. It identifies the module's own components, directives, and pipes,
+ *  making some of them public, through the exports property, so that external components can use them. @NgModule can also add service
+ *  providers to the application dependency injectors.
+ */
 export class AppModule {
 }
-
+/**
+ * The method gets the translations from the servers.
+ *
+ * @return Tags objects
+ */
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }

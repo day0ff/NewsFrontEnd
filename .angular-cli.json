@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "/home/day0ff/Programms/tomcat8/webapps/ROOT",
+      "outDir": "./dist",
       "assets": [
         "assets",
         "favicon.ico"

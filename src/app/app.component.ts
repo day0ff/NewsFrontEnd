@@ -5,53 +5,78 @@ import {Categories} from './entity/categories';
 import {CategoriesService} from './service/categories.service';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {User} from './entity/user';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+/**
+ * The root component class AppComponent.
+ */
 export class AppComponent {
+  /**
+   * property - of locale
+   */
   locale: string;
+  /**
+   * property - of news categories
+   */
   categories: Categories[];
-
-  getCategories() {
+  /**
+   * The method request foe all news categories.
+   */
+  getCategories(): void {
     this.categoriesService.getCategories().subscribe(categories => this.categories = categories);
   }
-
-  switchLanguage(language: string) {
+  /**
+   * The method request for all news categories.
+   */
+  switchLanguage(language: string): void {
     this.locale = language;
     this.translate.use(language);
     this.saveLocale(language);
   }
-
-  signIn() {
+  /**
+   * The method set timer for authorized session.
+   */
+  signIn(): void {
     setTimeout(() => {
       document.getElementById('closeLoginModal').click();
       document.location.reload();
     }, 200);
   }
-
-  navigateTo(link: string) {
+  /**
+   * The method navigate to the category link.
+   */
+  navigateTo(link: string): void {
     this.location.replaceState('/category/' + link);
     document.location.reload();
   }
-
-  saveLocale(locale: string) {
+  /**
+   * The method save locale to local storage.
+   */
+  saveLocale(locale: string): void {
     localStorage.setItem('locale', JSON.stringify(locale));
   }
-
+  /**
+   * The method get locale from local storage.
+   *
+   * @return locale
+   */
   getLocale(): string {
     return JSON.parse(localStorage.getItem('locale'));
   }
-
+  /**
+   * Creates a new default object AppComponent
+   * @constructor
+   */
   constructor(private translate: TranslateService,
               private authService: AuthService,
               private categoriesService: CategoriesService,
               private router: Router,
               private location: Location) {
-    if (localStorage.getItem('locale') === undefined) {
+    if (localStorage.getItem('locale')) {
       this.locale = this.translate.getBrowserLang();
       translate.setDefaultLang(this.locale);
       this.saveLocale(this.locale);

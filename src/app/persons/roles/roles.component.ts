@@ -12,12 +12,15 @@ export class RolesComponent implements OnInit {
 
   roles: string [];
 
-  getRoles() {
+  getRoles(): void {
     this.userService.getUserRoles(this.user.userName, this.user.password).subscribe(roles => {
       this.roles = roles;
     });
   }
-
+  /**
+   * Creates a new default object RolesComponent
+   * @constructor
+   */
   constructor(private userService: UserService) {
   }
 

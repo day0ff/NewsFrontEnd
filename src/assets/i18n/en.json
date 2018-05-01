@@ -4,13 +4,9 @@
   },
   "Nav": {
     "Home": "News",
-    "World": "World",
     "News": "News",
     "Persons": "Persons",
-    "Registration": "Registration",
-    "Message": {
-      "World": "News of the world. The hottest and latest world news."
-    }
+    "Registration": "Registration"
   },
   "Modal": {
     "Close": "Close",
@@ -38,7 +34,7 @@
       "Password": "password",
       "Error": "Wrong login or password.",
       "LogOut": "Log out",
-      "NoAccount": "Нет аккаунта?",
+      "NoAccount": "No account?",
       "Register": "Register."
     },
     "Registration": {
@@ -98,7 +94,8 @@
       "News": "Person news.",
       "NoNews": "No person news.",
       "Comments": "Person comments.",
-      "NoComments": "No person comments."
+      "NoComments": "No person comments.",
+      "Info": "Person information"
     }
   },
   "User": {

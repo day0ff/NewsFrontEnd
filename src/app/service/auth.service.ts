@@ -2,40 +2,55 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Token} from '../entity/token';
-import {User} from '../entity/user';
 import {Person} from '../entity/person';
+import {Urls} from '../entity/urls';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'})
 };
-
+/**
+ * The class AuthService implements methods of the authorization business logic.
+ */
 @Injectable()
 export class AuthService {
+  /**
+   * property - of default token entity
+   */
   private defaultToken: Token = {
-    access_token: null,
-    token_type: null,
-    // refresh_token: null,
+    access_token: '',
+    token_type: '',
     expires_in: 0,
-    scope: null
+    scope: []
   };
+  /**
+   * property - of default person entity
+   */
   private defaultPerson: Person = {
-    id: null,
+    id: 0,
     user: {
-      id: null,
-      userName: null,
-      password: null,
-      enabled: null
+      id: 0,
+      userName: '',
+      password: '',
+      enabled: false
     },
-    firstName: null,
-    lastName: null,
-    screenName: null,
-    image: null,
+    firstName: '',
+    lastName: '',
+    screenName: '',
+    image: ''
   };
-
-  private defaultRoles: string [] = [];
-
-  private authUrl = 'http://localhost:8080/oauth/token';
-
+  /**
+   * property - of default roles array
+   */
+  private defaultRoles: string [] = [''];
+  /**
+   * property - of authorization url
+   */
+  private authUrl = Urls.authUrl;
+  /**
+   * The method requests for authorization token.
+   *
+   * @return access token object
+   */
   public obtainAccessToken(login: string, password: string): Observable<Token> {
     const params = new HttpParams()
       .set('grant_type', 'password')
@@ -45,72 +60,99 @@ export class AuthService {
       .set('password', password);
     return this.http.post<Token>(this.authUrl, params, httpOptions);
   }
-
-  saveToken(token: Token) {
+  /**
+   * The method save authorization token and expiration time to local storage.
+   */
+  saveToken(token: Token): void {
     const expires_at = new Date().getTime() + (1000 * token.expires_in);
     localStorage.setItem('token', JSON.stringify(token));
     localStorage.setItem('expires_at', JSON.stringify(expires_at));
   }
-
-  getToken(): Token {
-    return JSON.parse(localStorage.getItem('token'));
-  }
-
-  saveUser(user: User) {
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  getUser(): User {
-    return JSON.parse(localStorage.getItem('user'));
-  }
-
-  savePerson(person: Person) {
+  /**
+   * The method save person to local storage.
+   */
+  savePerson(person: Person): void {
     localStorage.setItem('person', JSON.stringify(person));
   }
-
+  /**
+   * The method get person from local storage or set default.
+   *
+   * @return person object
+   */
   getPerson(): Person {
-    return JSON.parse(localStorage.getItem('person'));
+    const person = JSON.parse(localStorage.getItem('person'));
+    if (person) {
+      return person;
+    } else {
+      this.savePerson(this.defaultPerson);
+      return this.defaultPerson;
+    }
   }
-
+  /**
+   * The method get person roles from local storage or set default.
+   *
+   * @return roles string array
+   */
   getRoles(): string [] {
-    return JSON.parse(localStorage.getItem('roles'));
+    const roles = JSON.parse(localStorage.getItem('roles'));
+    if (roles) {
+      return roles;
+    } else {
+      this.saveRoles(this.defaultRoles);
+      return this.defaultRoles;
+    }
   }
-
-  saveRoles(roles: string []) {
+  /**
+   * The method save person roles to local storage.
+   */
+  saveRoles(roles: string []): void {
     localStorage.setItem('roles', JSON.stringify(roles));
   }
-
+  /**
+   * The method get access token from local storage.
+   *
+   * @return access token
+   */
   getAccessToken(): string {
     return JSON.parse(localStorage.getItem('token')).access_token;
   }
-
-  getExpireIn() {
+  /**
+   * The method return expiration time of the access token from local storage.
+   *
+   * @return expiration time
+   */
+  getExpireIn(): number {
     const expiration = localStorage.getItem('expires_at');
     return JSON.parse(expiration) - new Date().getTime();
   }
-
-  isExpired() {
+  /**
+   * The method return is time of the access token expired.
+   *
+   * @return is expired
+   */
+  isExpired(): boolean {
     return (this.getExpireIn() <= 0);
   }
-
-  isAuthorized() {
-    return (this.getExpireIn() > 0);
-  }
-
-  isToken() {
-    return localStorage.getItem('token') != null;
-  }
-
+  /**
+   * The method return is user has privilege.
+   *
+   * @return is has privilege
+   */
   hasRoles(roles: string []): boolean {
     return this.getRoles().some(userRole => roles.indexOf(userRole) >= 0);
   }
-
-  logout() {
+  /**
+   * The method save default token, person and person roles.
+   */
+  logout(): void {
     this.saveToken(this.defaultToken);
     this.savePerson(this.defaultPerson);
     this.saveRoles(this.defaultRoles);
   }
-
+  /**
+   * Creates a new default object AuthService
+   * @constructor
+   */
   constructor(private http: HttpClient) {
   }
 }

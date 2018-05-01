@@ -51,17 +51,17 @@
           <h6 id="loginError" class="modal-title color" style="display: none; font-size: 60%; color: #5d2222;">
             {{'Modal.Login.Error' | translate}}
           </h6>
-          <h6 class="modal-title color" style="font-size: 60%;">
+          <h6 id="registrationButton" class="modal-title color" style="font-size: 60%;">
             {{'Modal.Login.NoAccount' | translate}}&nbsp;
             <a routerLink="/registration" style="color:#444444;" data-dismiss="modal">
               {{'Modal.Login.Register' | translate}}</a>
           </h6>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Modal.Close' |
-            translate}}
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            {{'Modal.Close' | translate}}
           </button>
-          <button type="button" class="btn btn-light btn-outline-dark" (click)='eventExecute()'>
+          <button id="loginConfirm" type="button" class="btn btn-light btn-outline-dark" (click)='eventExecute()'>
             {{'Modal.Login.Btn' | translate}}
           </button>
         </div>

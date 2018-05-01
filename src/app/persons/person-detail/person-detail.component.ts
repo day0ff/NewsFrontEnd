@@ -12,7 +12,6 @@ import {Comment} from '../../entity/comment';
 import {NewsService} from '../../service/news.service';
 import {News} from '../../entity/news';
 import {Img} from '../../entity/img';
-import {User} from '../../entity/user';
 import {UserService} from '../../service/user.service';
 
 @Component({
@@ -20,17 +19,42 @@ import {UserService} from '../../service/user.service';
   templateUrl: './person-detail.component.html',
   styleUrls: ['./person-detail.component.css']
 })
-
+/**
+ * The class implements component management PersonDetailComponent.
+ * Contains methods that create, update, delete person information.
+ */
 export class PersonDetailComponent implements OnInit {
+  /**
+   * property - of person
+   */
   person: Person;
+  /**
+   * property - of persons news
+   */
   news: News[];
+  /**
+   * property - of user images group array
+   */
   imgGroups: Group [] = Img.imgUser;
+  /**
+   * property - of persons comments array
+   */
   comments: Comment[] = [];
-
+  /**
+   * property - of persons roles array
+   */
   roles: Roles[];
+  /**
+   * property - of persons roles types array
+   */
   rolesTypes: Group[] = [];
+  /**
+   * property - of persons roles groups array
+   */
   rolesGroups: Group[] = [];
-
+  /**
+   * The method requests person from route snapshot or set default.
+   */
   getPerson(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== 'new') {
@@ -43,7 +67,9 @@ export class PersonDetailComponent implements OnInit {
       this.person = new Person(null, null, null, null, null, null);
     }
   }
-
+  /**
+   * The method requests roles and set them to rolesGroups and requests person roles and set them to rolesTypes.
+   */
   getRoles(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== 'new') {
@@ -65,8 +91,10 @@ export class PersonDetailComponent implements OnInit {
         );
       });
   }
-
-  saveRoles() {
+  /**
+   * The method save person roles from rolesTypes.
+   */
+  saveRoles(): void {
     const roles: number[] = [];
     this.rolesTypes.forEach(
       role => {
@@ -78,21 +106,27 @@ export class PersonDetailComponent implements OnInit {
       .subscribe(() => console.log('Add Roles'),
         error => console.log('Failed add Roles'));
   }
-
+  /**
+   * The method requests person comments.
+   */
   getComments(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.commentsService.getCommentsPerson(+id)
       .subscribe(comments => this.comments = comments,
         error => console.log('Comments error + ' + error));
   }
-
-  getNews() {
+  /**
+   * The method requests person news.
+   */
+  getNews(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.newsService.getNewsByPrson(+id).subscribe(news => this.news = news,
       error => console.log('News not found'));
   }
-
-  saveUser() {
+  /**
+   * The method update user and user roles.
+   */
+  saveUser(): void {
     this.userService.updateUser(this.person.user)
       .subscribe(user => {
           this.person.user = user;
@@ -100,7 +134,9 @@ export class PersonDetailComponent implements OnInit {
         },
         error => console.log('Error to update User'));
   }
-
+  /**
+   * The method update person information.
+   */
   updatePerson(): void {
     this.personService.updatePerson(this.person)
       .subscribe(person => {
@@ -108,7 +144,9 @@ export class PersonDetailComponent implements OnInit {
         },
         error => console.log('Error to update Person'));
   }
-
+  /**
+   * The method delete person.
+   */
   deletePerson(): void {
     this.personService.deletePerson(this.person.user.userName, this.person.user.password, this.person.id)
       .subscribe(() => {
@@ -116,12 +154,16 @@ export class PersonDetailComponent implements OnInit {
         this.router.navigateByUrl('/persons');
       }, () => console.log('Can not delete Person'));
   }
-
-
+  /**
+   * The method return to previous page.
+   */
   goBack(): void {
     this.location.back();
   }
-
+  /**
+   * Creates a new default object PersonDetailComponent
+   * @constructor
+   */
   constructor(private route: ActivatedRoute,
               private personService: PersonService,
               private userService: UserService,
@@ -131,7 +173,9 @@ export class PersonDetailComponent implements OnInit {
               private location: Location,
               private router: Router) {
   }
-
+  /**
+   * Initializes the PersonDetailComponent class after it is created.
+   */
   ngOnInit() {
     this.getPerson();
     this.getRoles();

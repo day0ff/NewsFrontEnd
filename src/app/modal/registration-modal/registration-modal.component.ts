@@ -8,17 +8,33 @@ import {UserService} from '../../service/user.service';
   templateUrl: './registration-modal.component.html',
   styleUrls: ['./registration-modal.component.css']
 })
+/**
+ * The class implements modal component management RegistrationModalComponent.
+ * Contains registration methods.
+ */
 export class RegistrationModalComponent implements OnInit {
+  /**
+   * property - input User from parent component
+   */
   @Input() user: User;
+  /**
+   * property - input Person from parent component
+   */
   @Input() person: Person;
+  /**
+   * property - output event to parent
+   */
   @Output() eventEmitter: EventEmitter<string> = new EventEmitter();
-
-
-  eventExecute() {
+  /**
+   * The method returns control to the parent
+   */
+  eventExecute(): void {
     this.eventEmitter.emit();
   }
-
-  checkFields() {
+  /**
+   * The method validates user fields for null and empty.
+   */
+  checkFields(): void {
     let notVerify = false;
     console.log('checkFields');
     if (this.user.userName === null || this.user.userName === '') {
@@ -47,22 +63,31 @@ export class RegistrationModalComponent implements OnInit {
       this.showRegister();
     }
   }
-
-  showError() {
+  /**
+   * The method error elements.
+   */
+  showError(): void {
     document.getElementById('messageError').style.display = 'block';
     document.getElementById('messageUser').style.display = 'none';
     document.getElementById('submit').style.display = 'none';
   }
-
-  showRegister() {
+  /**
+   * The method registration elements.
+   */
+  showRegister(): void {
     document.getElementById('messageError').style.display = 'none';
     document.getElementById('messageUser').style.display = 'block';
     document.getElementById('submit').style.display = 'block';
   }
-
+  /**
+   * Creates a new default object RegistrationModalComponent
+   * @constructor
+   */
   constructor(private userService: UserService) {
   }
-
+  /**
+   * Initializes the RegistrationModalComponent class after it is created.
+   */
   ngOnInit() {
     this.checkFields();
   }

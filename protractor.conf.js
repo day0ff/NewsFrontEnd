@@ -6,13 +6,14 @@ const {SpecReporter} = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './e2e/**/*.e2e-spec.ts'
+    './e2e/**/*.e2e-spec.ts'  //These are the specs that we want protractor to run. In this case, we’ll be running all the test that we have in the e2e directory and the .e2e-spec.js suffix and extension.
   ],
   capabilities: {
     'browserName': 'chrome'
   },
-  directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  directConnect: true, // This tells Protractor to directly connect to the webdriver (instead of connecting to a local Selenium server
+  // baseUrl: 'http://localhost:4200/',
+  baseUrl: 'http://localhost:8080',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
