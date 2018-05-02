@@ -16,7 +16,7 @@ export class DeleteCommentComponent implements OnInit {
   /**
    * property - output event to parent
    */
-  @Output() eventEmitterComment: EventEmitter<string> = new EventEmitter();
+  @Output() eventEmitterComment: EventEmitter<any> = new EventEmitter();
   /**
    * The method returns control to the parent
    */

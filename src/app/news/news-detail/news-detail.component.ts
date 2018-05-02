@@ -65,6 +65,7 @@ export class NewsDetailComponent implements OnInit {
       .subscribe(news => {
         this.news = news;
         console.log('Get news id = ' + this.news.id);
+        document.getElementById('post').innerHTML = this.news.post;
       });
   }
   /**

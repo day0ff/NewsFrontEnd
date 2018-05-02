@@ -35,7 +35,7 @@
           <p>{{news.article}}</p>
         </div>
         <div class="news-date">{{news.publicationDate}}</div>
-        <div class="news-post">{{news.post}}</div>
+        <div id="post" class="news-post"></div>
         <app-news-tags [newsId]="news.id"></app-news-tags>
         <div class="news-author"><span>{{'News.Details.AuthorOfArticle' | translate}}</span>&nbsp;{{news.person.screenName}}
         </div>
